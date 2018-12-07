@@ -1,21 +1,39 @@
 
-var redGang = [];
-var numRedBoxes = 3;
+// var redGang = [];
+// var numRedBoxes = 3;
 
-var makeRed = function() {
+var familyOfBoxes = {
+    red: {
+        array: [],
+        numBoxes: 3,
+        classBorder: 'redBoxBorder',
+        containerId: '#redBoxesMatters'
+    },
+    yellow: {
+        array: [],
+        numBoxes: 4,
+        classBorder: 'yellowBoxBorder',
+        containerId: '#yellowBoxesMatters'
+    }
+};
+
+var red = familyOfBoxes.red;
+var yellow = familyOfBoxes.yellow;
+
+var makeBoxes = function(color) {
 //Create the number of red boxes
-    for (var i=0; i<numRedBoxes; i++) {
-        redGang.push( document.createElement("div") );
+    for (var i=0; i<color.numBoxes; i++) {
+        color.array.push( document.createElement("div") );
     }
 
 //Gives each boxes an id and class
-        redGang.forEach(function(box, i){
+        color.array.forEach(function(box, i){
             box.id = i;
-            box.classList.add('redBoxBorder');
+            box.classList.add(color.classBorder);
 
 //Appends the boxes into the DOM
-            var whereRedBoxesLives = document.querySelector('#redBoxesMatters');
-            whereRedBoxesLives.appendChild(box);
+            var whereTheyAre = document.querySelector(color.containerId);
+            whereTheyAre.appendChild(box);
         });
     }
 
@@ -26,11 +44,18 @@ var press = function (e) {
         var first = document.querySelector(".redBoxBorder");
         first.classList.replace('redBoxBorder', 'redBox');
         console.log('can')
-     };
+     }
+//When you press 's', this will happen..
+     if (e.keyCode === 83) {
+        var first = document.querySelector(".yellowBoxBorder");
+        first.classList.replace('yellowBoxBorder', 'yellowBox');
+        console.log('can')
+     }
 }
 
 window.onload = function() {
-    makeRed()
+    makeBoxes(yellow);
+    makeBoxes(red);
     document.addEventListener('keydown',press)
 }
 
