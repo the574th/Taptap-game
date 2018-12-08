@@ -1,30 +1,72 @@
+html {
+	background-color: #80C8BD;
+}
+
+#wrapper {
+	width: 500px;
+/*	background-color: black;*/
+	position: relative;
+	margin: 0 auto;}
+
+#redBoxesMatters {
+	position: relative;
+	display: inline-block;}
+
+#yellowBoxesMatters {
+	position: relative;
+	display: inline-block;
+}
+
+#greenBoxesMatters {
+	position: relative;
+	display: inline-block;
+}
+
+
+
 .redBoxBorder {
-	width: 100px;
-	height: 100px;
+	width: 65px;
+	height: 65px;
 	border: 5px solid #E27D5F;
 	border-style: dashed;
 	border-radius: 10px;
 }
 
 .redBox {
-	width: 100px;
-	height: 100px;
+	width: 75px;
+	height: 75px;
 	background-color: #E27D5F;
 	border-radius: 10px;
 }
 
 .yellowBoxBorder {
-	width: 100px;
-	height: 100px;
+	width: 65px;
+	height: 65px;
 	border: 5px solid #E8A87C;
 	border-style: dashed;
 	border-radius: 10px;
 }
 
 .yellowBox {
-	width: 100px;
-	height: 100px;
+	width: 75px;
+	height: 75px;
 	background-color: #E8A87C;
 	border-radius: 10px;
 }
+
+.greenBoxBorder {
+	width: 65px;
+	height: 65px;
+	border: 5px solid #40B3A2;
+	border-style: dashed;
+	border-radius: 10px;
+}
+
+.greenBox {
+	width: 75px;
+	height: 75px;
+	background-color: #40B3A2;
+	border-radius: 10px;
+}
+
 
