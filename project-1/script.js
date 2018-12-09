@@ -12,17 +12,19 @@ var familyOfBoxes = {
         classBorder: 'yellowBoxBorder',
         classFill: 'yellowBox',
         boxid: 'y',
-        containerId: '#yellowBoxesMatters'
+        containerId: '#yellowBoxesMatters',
+        numOfClicks: 0
     },
     green: {
         array: [],
         classBorder: 'greenBoxBorder',
         classFill: 'greenBox',
         boxid: 'g',
-        containerId: '#greenBoxesMatters'
+        containerId: '#greenBoxesMatters',
+        numOfClicks: 0
     }
 };
-//variables for colors, easier to reference
+//      variables for colors, for easier reference
 var red = familyOfBoxes.red;
 var yellow = familyOfBoxes.yellow;
 var green = familyOfBoxes.green;
@@ -52,12 +54,13 @@ var makeBoxes = function(color, numOfBoxes) {
 }
 
 
+
 //      Function to change box from empty border to filled solid by replacing classes
-//      This affect only one box, which is the bottom (the last)
+//      This affect only one box, which is the bottom
 var borderToFill = function (color) {
     var all = document.querySelectorAll("." + color.classBorder);
-    var last = all[all.length-1];
-    last.classList.replace(color.classBorder, color.classFill);
+    var bottom = all[all.length-1];
+    bottom.classList.replace(color.classBorder, color.classFill);
 }
 
 
@@ -72,66 +75,92 @@ var fillToBorderBoxes = function (color) {
 
 
 //      Function to basically restart the 'pattern', all boxes emptied and try again
-var doItAgain = function () {
+// var doItAgain = function () {
+//     red.numOfClicks = 0;
+//     yellow.numOfClicks = 0;
+//     green.numOfClicks = 0;
+//     fillToBorderBoxes(red);
+//     fillToBorderBoxes(yellow);
+//     fillToBorderBoxes(green);
+// }
+
+var doItAgainV2 = function () {
+    Object.keys(familyOfBoxes).forEach(function(key) {
+    familyOfBoxes[key].numOfClicks = 0;
+    fillToBorderBoxes(familyOfBoxes[key]);
+ });
+};
+
+    // familyOfBoxes.forEach(function(color) {
+    //     color.numOfClicks = 0;
+    //     fillToBorderBoxes(color);
+    // });
+
+
+
+var yayNextPattern = function () {
     red.numOfClicks = 0;
     yellow.numOfClicks = 0;
     green.numOfClicks = 0;
-    fillToBorderBoxes(red);
-    fillToBorderBoxes(yellow);
-    fillToBorderBoxes(green);
+    setTimeout(function() {
+        alert("yay")
+    }, 100)
+    red.array = [];
+    document.querySelectorAll("."+red.classFill).forEach(e => e.parentNode.removeChild(e));
+
+}
+
+
+var checkCorrect = function () {
+    if ((red.numOfClicks === red.array.length-1) && (yellow.numOfClicks === yellow.array.length-1) && (green.numOfClicks === green.array.length-1)){
+        console.log("yay");
+        yayNextPattern();
+    }
 }
 
 
 
-
 var press = function (e) {
-//When you press 'a', this will happen..
+//      When you press 'a', this will happen..
      if (e.keyCode === 65) {
         red.numOfClicks++;
-        console.log(red.numOfClicks);
         if (red.numOfClicks < red.array.length) {
             borderToFill(red);
         } else {
         //When you press 'a' MORE than required amount....
-            alert("toto");
-            doItAgain();
-        }
+            alert("ooops!");
+            doItAgainV2();
+        };
      }
-//When you press 'a' MORE than required amount, this will happen..
-     // if ((e.keyCode === 65) && (red.numOfClicks < red.array.length-1)) {
-     //    red.numOfClicks++
-     //    borderToFill(red);
-     //    console.log(red.numOfClicks);
-     // }
-//When you press 'a' MORE than required amount, this will happen..
-     // if ((e.keyCode === 65) && (red.numOfClicks === red.array.length)) {
-     //    red.numOfClicks++;
-     //    console.log(red.numOfClicks);
-     //    alert("toto")
-     // }
-// //When you press 's', this will happen..
-//      if (e.keyCode === 83) {
-//         var all = document.querySelectorAll(".yellowBoxBorder");
-//         var last = all[all.length-1];
-//         last.classList.replace('yellowBoxBorder', 'yellowBox');
-//      }
-// //When you press 's', this will happen..
-//      if (e.keyCode === 68) {
-//         var all = document.querySelectorAll(".greenBoxBorder");
-//         var last = all[all.length-1];
-//         last.classList.replace('greenBoxBorder', 'greenBox');
-//      }
+//      When you press 's', this will happen..
+     if (e.keyCode === 83) {
+        yellow.numOfClicks++;
+        if (yellow.numOfClicks < yellow.array.length) {
+            borderToFill(yellow);
+        } else {
+        //When you press 's' MORE than required amount....
+            alert("ooops!");
+            doItAgainV2();
+        }
+    }
+//When you press 'd', this will happen..
+     if (e.keyCode === 68) {
+        green.numOfClicks++;
+        if (green.numOfClicks < green.array.length) {
+            borderToFill(green);
+        } else {
+        //When you press 'd' MORE than required amount....
+            alert("ooops");
+            doItAgainV2();
+        }
+    }
 }
 
 
 window.onload = function() {
     makeBoxes(yellow, 5);
     makeBoxes(red, 3);
-    makeBoxes(green, 4)
-    document.addEventListener('keydown',press)
+    makeBoxes(green, 4);
+    document.addEventListener('keydown',press);
+    document.addEventListener('keydown',checkCorrect)
 }
-
-    // boxes.forEach(function(box, i){
-    //   box.id = i + 1;
-    //   box.classList.add('box')
-    //   box.addEventListener('click', playerTurn);
