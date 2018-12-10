@@ -3,6 +3,7 @@ var familyOfBoxes = {
         array: [],
         classBorder: 'redBoxBorder',
         classFill: 'redBox',
+        classAniHide: 'redBoxHide',
         boxid: 'r',
         containerId: '#redBoxesMatters',
         numOfClicks: 0
@@ -11,6 +12,7 @@ var familyOfBoxes = {
         array: [],
         classBorder: 'yellowBoxBorder',
         classFill: 'yellowBox',
+        classAniHide: 'yellowBoxHide',
         boxid: 'y',
         containerId: '#yellowBoxesMatters',
         numOfClicks: 0
@@ -19,6 +21,7 @@ var familyOfBoxes = {
         array: [],
         classBorder: 'greenBoxBorder',
         classFill: 'greenBox',
+        classAniHide: 'greenBoxHide',
         boxid: 'g',
         containerId: '#greenBoxesMatters',
         numOfClicks: 0
@@ -98,24 +101,34 @@ var yayCorrect = function () {
     Object.keys(familyOfBoxes).forEach(function(key) {
 
 //      Reset numOfClicks and array, fresh start
-    familyOfBoxes[key].numOfClicks = 0;
-    familyOfBoxes[key].array = [];
+        familyOfBoxes[key].numOfClicks = 0;
+        familyOfBoxes[key].array = [];
+
+//      Change class for animation
+        var allFilledBoxes = document.querySelectorAll("." + familyOfBoxes[key].classFill);
+        allFilledBoxes.forEach(function(box) {
+            box.classList.replace(familyOfBoxes[key].classFill, familyOfBoxes[key].classAniHide);
+        });
+
 
 //      Remove all the boxes div in HTML DOM.
-    document.querySelectorAll("."+familyOfBoxes[key].classFill).forEach(e => e.parentNode.removeChild(e));
-    var child = document.querySelector('#'+familyOfBoxes[key].boxid+'Wrong')
-    child.remove();
- });
+        var removeBoxes = function() {
+            document.querySelectorAll("."+familyOfBoxes[key].classAniHide).forEach(e => e.parentNode.removeChild(e));
+            var child = document.querySelector('#'+familyOfBoxes[key].boxid+'Wrong');
+            child.remove();
+        };
+
+        setTimeout(removeBoxes, 1000)
+    });
 };
 
 
 var checkCorrect = function () {
     if ((red.numOfClicks === red.array.length-1) && (yellow.numOfClicks === yellow.array.length-1) && (green.numOfClicks === green.array.length-1)){
         setTimeout(function() {
-            var next = confirm("yay");
             if (gamePlay.time > 0) {
                 yayCorrect();
-                GeneratePattern();
+                setTimeout(GeneratePattern, 1500);
             } else if (gamePlay.time === 0) {
                 document.removeEventListener('keydown',press);
                 document.removeEventListener('keydown',checkCorrect);

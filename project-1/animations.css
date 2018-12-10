@@ -1,0 +1,129 @@
+.redBoxHide {
+	width: 75px;
+	height: 75px;
+	background-color: #E27D5F;
+	border-radius: 10px;
+  animation: dissolveIn 1.25s ease-in-out 0s 1;
+}
+
+.yellowBoxHide {
+	width: 75px;
+	height: 75px;
+	background-color: #E8A87C;
+	border-radius: 10px;
+  animation: dissolveIn 1.25s ease-in-out 0s 1;
+}
+
+.greenBoxHide {
+	width: 75px;
+	height: 75px;
+	background-color: #40B3A2;
+	border-radius: 10px;
+  animation: dissolveIn 1.25s ease-in-out 0s 1;
+}
+
+@keyframes dissolveIn {
+  0% {
+    transform: scale(1);
+    opacity: 1;;
+}
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+}
+
+.redBoxBorderComeOut {
+	width: 65px;
+	height: 65px;
+	border: 5px solid #E27D5F;
+	border-style: dashed;
+	border-radius: 10px;
+	animation: dissolveOut 1.25s ease-in-out 0s 1;
+}
+
+.yellowBoxBorderComeOut {
+	width: 65px;
+	height: 65px;
+	border: 5px solid #E27D5F;
+	border-style: dashed;
+	border-radius: 10px;
+	animation: dissolveOut 1.25s ease-in-out 0s 1;
+}
+
+.greenBoxBorderComeOut {
+	width: 65px;
+	height: 65px;
+	border: 5px solid #E27D5F;
+	border-style: dashed;
+	border-radius: 10px;
+	animation: dissolveOut 1.25s ease-in-out 0s 1;
+}
+
+@keyframes dissolveOut {
+  0% {
+    transform: scale(0);
+    opacity: 0;;
+}
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+}
+
+.redBoxWrong {
+	width: 75px;
+	height: 75px;
+	background-color: #E27D5F;
+	border-radius: 10px;
+  animation: blink 1s cubic-bezier(1,0,0,1)  1;
+}
+
+.yellowBoxWrong {
+	width: 75px;
+	height: 75px;
+	background-color: #E8A87C;
+	border-radius: 10px;
+  animation: blink 1s cubic-bezier(1,0,0,1)  1;
+}
+
+.greenBoxWrong {
+	width: 75px;
+	height: 75px;
+	background-color: #40B3A2;
+	border-radius: 10px;
+  animation: blink 1s cubic-bezier(1,0,0,1)  1;
+}
+
+@keyframes dissolveIn {
+  0% {
+    transform: scale(1);
+    opacity: 1;;
+}
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+}
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+
+}
