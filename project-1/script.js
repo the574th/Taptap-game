@@ -28,7 +28,7 @@ var familyOfBoxes = {
 var gamePlay = {
     score: 0,
     name: null,
-    time: 10,
+    time: 15,
 }
 
 
@@ -42,25 +42,28 @@ var green = familyOfBoxes.green;
 var makeBoxes = function(color, numOfBoxes) {
     numOfBoxes = parseInt(numOfBoxes);
 
-//      Create the number of boxes by adding div, id & class
-    for (var i=0; i<numOfBoxes; i++) {
-        color.array.push( document.createElement("div") );
-        color.array[i].id = color.boxid+i;
-        color.array[i].classList.add(color.classBorder);
-    };
+    //  If numOfBoxes is not zero, then do the following....
+    // if (numOfBoxes !== 0) {
 
 //     Create invisible box a.k.a the extra wrong box
         color.array.push( document.createElement("div") );
-        var wrongBox = color.array[color.array.length-1];
+        var wrongBox = color.array[0];
+        // var wrongBox = color.array[color.array.length-1];
         wrongBox.id = color.boxid+'Wrong';
 
+//      Create the number of boxes by adding div, id & class
+    for (var i=0; i<numOfBoxes; i++) {
+        color.array.push( document.createElement("div") );
+        color.array[i+1].id = color.boxid+i;
+        color.array[i+1].classList.add(color.classBorder);
+    };
+// }
 //      Appends the boxes into the DOM under their specific color group div
     color.array.forEach(function(box) {
         var whereTheyAre = document.querySelector(color.containerId);
         whereTheyAre.appendChild(box);
     });
 }
-
 
 
 //      Change box from empty border to Filled Solid by replacing classes
@@ -124,6 +127,7 @@ var checkCorrect = function () {
     }
 }
 
+
 //      Generate random patterns
 var GeneratePattern = function () {
     makeBoxes(red, (Math.random() * 5))
@@ -168,17 +172,30 @@ var press = function (e) {
     }
 }
 
-var timerSet = setInterval(function() {
-    gamePlay.time--;
-    console.log(gamePlay.time);
-    if (gamePlay.time === 0) {
-        clearTimeout(timerSet);
-    };
-}, 1000)
+
+var timer = function () {
+    var timerDiv = document.createElement('div');
+    timerDiv.setAttribute('id','timer');
+
+
+    var main = document.querySelector('#bapak');
+    var first = main.children[0];
+    main.insertBefore(timerDiv, first);
+}
+
+
+// var timerInterval = setInterval(function() {
+//     gamePlay.time--;
+//     console.log(gamePlay.time);
+//     if (gamePlay.time === 0) {
+//         clearTimeout(timerInterval);
+//     };
+// }, 1000)
 
 
 
 window.onload = function() {
+    timer();
     GeneratePattern();
     document.addEventListener('keydown',press);
     document.addEventListener('keydown',checkCorrect)

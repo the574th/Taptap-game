@@ -78,3 +78,27 @@ body{background:#111;}
     border-width: 1.5em;
   }
 }*/
+
+
+onload = function timer() {
+  var date = new Date();
+  var seconds = date.getSeconds();
+  if(seconds <= 9) {
+    seconds = "0" + seconds;
+  }
+  var digit = document.getElementsByClassName('digit')[0];
+  digit.innerText = seconds;
+  digit.innerContent = seconds;
+  setTimeout(timer, 1000);
+}
+
+var transition = document.getElementsByClassName('title')[0];
+var wrapper = document.getElementsByClassName('wrapper')[0];
+var digit = document.getElementsByClassName('digit')[0];
+
+transition.addEventListener('click', event);
+
+function event() {
+  wrapper.classList.toggle('active');
+  digit.classList.toggle('change');
+}
