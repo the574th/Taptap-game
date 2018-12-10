@@ -25,9 +25,10 @@ var familyOfBoxes = {
     }
 };
 
-var player = {
+var gamePlay = {
     score: 0,
     name: null,
+    time: 10,
 }
 
 
@@ -89,11 +90,17 @@ var doItAgainV2 = function () {
 };
 
 
-var yayCompleted = function () {
+var yayCorrect = function () {
+//      Add 5 points to player score
+    gamePlay.score +=5;
+
+//      For each colors...
     Object.keys(familyOfBoxes).forEach(function(key) {
+
 //      Reset numOfClicks and array, fresh start
     familyOfBoxes[key].numOfClicks = 0;
     familyOfBoxes[key].array = [];
+
 //      Remove all the boxes div in HTML DOM.
     document.querySelectorAll("."+familyOfBoxes[key].classFill).forEach(e => e.parentNode.removeChild(e));
     var child = document.querySelector('#'+familyOfBoxes[key].boxid+'Wrong')
@@ -106,13 +113,18 @@ var checkCorrect = function () {
     if ((red.numOfClicks === red.array.length-1) && (yellow.numOfClicks === yellow.array.length-1) && (green.numOfClicks === green.array.length-1)){
         setTimeout(function() {
             var next = confirm("yay");
-            if (next) {
-                yayCompleted();
-            };
+            if (gamePlay.time !==0) {
+                yayCorrect();
+                GeneratePattern();
+            } else if (gamePlay.time === 0) {
+                document.removeEventListener('keydown',press);
+                document.removeEventListener('keydown',checkCorrect)
+            }
         }, 100)
     }
 }
 
+//      Generate random patterns
 var GeneratePattern = function () {
     makeBoxes(red, (Math.random() * 5))
     makeBoxes(yellow, (Math.random() * 5))
@@ -156,34 +168,18 @@ var press = function (e) {
     }
 }
 
-
-// var time = 10;
-
-// // var timer = setInterval( function() {
-// //     time--;
-// //     console.log(time)
-// //     if (time === 0){
-// //         clearTimeout(timer)
-// //     };
-// // }, 1000)
-
-// // var timer = function() {
-// //     time--;
-// //     console.log(time);
-// // }
-
-// var timerSet = setInterval(function() {
-//     time--;
-//     console.log(time);
-//     if (time === 0) {
-//         clearTimeout(timerSet);
-//     };
-// }, 1000)
+var timerSet = setInterval(function() {
+    gamePlay.time--;
+    console.log(gamePlay.time);
+    if (gamePlay.time === 0) {
+        clearTimeout(timerSet);
+    };
+}, 1000)
 
 
 
 window.onload = function() {
-    GeneratePattern()
+    GeneratePattern();
     document.addEventListener('keydown',press);
     document.addEventListener('keydown',checkCorrect)
 }
