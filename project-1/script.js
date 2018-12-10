@@ -42,22 +42,19 @@ var green = familyOfBoxes.green;
 var makeBoxes = function(color, numOfBoxes) {
     numOfBoxes = parseInt(numOfBoxes);
 
-    //  If numOfBoxes is not zero, then do the following....
-    // if (numOfBoxes !== 0) {
-
 //     Create invisible box a.k.a the extra wrong box
         color.array.push( document.createElement("div") );
         var wrongBox = color.array[0];
-        // var wrongBox = color.array[color.array.length-1];
         wrongBox.id = color.boxid+'Wrong';
 
 //      Create the number of boxes by adding div, id & class
+//      i+1 is there to prevent changing of the invisible box
     for (var i=0; i<numOfBoxes; i++) {
         color.array.push( document.createElement("div") );
         color.array[i+1].id = color.boxid+i;
         color.array[i+1].classList.add(color.classBorder);
     };
-// }
+
 //      Appends the boxes into the DOM under their specific color group div
     color.array.forEach(function(box) {
         var whereTheyAre = document.querySelector(color.containerId);
@@ -66,7 +63,7 @@ var makeBoxes = function(color, numOfBoxes) {
 }
 
 
-//      Change box from empty border to Filled Solid by replacing classes
+//      Change box from Empty Border to Filled Solid by replacing classes
 //      This affect only one box, which is the bottom
 var borderToFill = function (color) {
     var all = document.querySelectorAll("." + color.classBorder);
@@ -116,12 +113,12 @@ var checkCorrect = function () {
     if ((red.numOfClicks === red.array.length-1) && (yellow.numOfClicks === yellow.array.length-1) && (green.numOfClicks === green.array.length-1)){
         setTimeout(function() {
             var next = confirm("yay");
-            if (gamePlay.time !==0) {
+            if (gamePlay.time > 0) {
                 yayCorrect();
                 GeneratePattern();
             } else if (gamePlay.time === 0) {
                 document.removeEventListener('keydown',press);
-                document.removeEventListener('keydown',checkCorrect)
+                document.removeEventListener('keydown',checkCorrect);
             }
         }, 100)
     }
@@ -130,72 +127,94 @@ var checkCorrect = function () {
 
 //      Generate random patterns
 var GeneratePattern = function () {
-    makeBoxes(red, (Math.random() * 5))
-    makeBoxes(yellow, (Math.random() * 5))
-    makeBoxes(green, (Math.random() * 5))
+    makeBoxes(red, (Math.random() * 5));
+    makeBoxes(yellow, (Math.random() * 5));
+    makeBoxes(green, (Math.random() * 5));
+
+//      Prevent zero/no pattern from happening after above random function
+//      remember there will always be one 'wrongBox' in every div
+    while ((red.array.length === 1) && (yellow.array.length === 1) && (green.array.length === 1)) {
+        makeBoxes(red, (Math.random() * 5));
+        makeBoxes(yellow, (Math.random() * 5));
+        makeBoxes(green, (Math.random() * 5));
+    }
 }
 
 
 var press = function (e) {
+    if (gamePlay.time > 0) {
+
 //      When you press 'a', this will happen..
-     if (e.keyCode === 65) {
-        red.numOfClicks++;
-        if (red.numOfClicks < red.array.length) {
-            borderToFill(red);
-        } else {
-        //When you press 'a' MORE than required amount....
-            alert("ooops!");
-            doItAgainV2();
-        };
-     }
+         if (e.keyCode === 65) {
+            red.numOfClicks++;
+            if (red.numOfClicks < red.array.length) {
+                borderToFill(red);
+            } else {
+            //When you press 'a' MORE than required amount....
+                alert("ooops!");
+                doItAgainV2();
+            };
+         }
+
 //      When you press 's', this will happen..
-     if (e.keyCode === 83) {
-        yellow.numOfClicks++;
-        if (yellow.numOfClicks < yellow.array.length) {
-            borderToFill(yellow);
-        } else {
-        //When you press 's' MORE than required amount....
-            alert("ooops!");
-            doItAgainV2();
+         if (e.keyCode === 83) {
+            yellow.numOfClicks++;
+            if (yellow.numOfClicks < yellow.array.length) {
+                borderToFill(yellow);
+            } else {
+            //When you press 's' MORE than required amount....
+                alert("ooops!");
+                doItAgainV2();
+            }
         }
-    }
-//When you press 'd', this will happen..
-     if (e.keyCode === 68) {
-        green.numOfClicks++;
-        if (green.numOfClicks < green.array.length) {
-            borderToFill(green);
-        } else {
-        //When you press 'd' MORE than required amount....
-            alert("ooops");
-            doItAgainV2();
+
+//      When you press 'd', this will happen..
+         if (e.keyCode === 68) {
+            green.numOfClicks++;
+            if (green.numOfClicks < green.array.length) {
+                borderToFill(green);
+            } else {
+            //When you press 'd' MORE than required amount....
+                alert("ooops");
+                doItAgainV2();
+            }
         }
-    }
+
+//      After time is up, players can't press anymore...
+    } else {
+        document.removeEventListener('keydown',press);
+        document.removeEventListener('keydown',checkCorrect);
+        }
+
 }
 
 
-var timer = function () {
+var createTimer = function () {
+
+//      Creates the timer div in javascript
     var timerDiv = document.createElement('div');
     timerDiv.setAttribute('id','timer');
+    timerDiv.innerText = gamePlay.time;
 
-
+//      Appends the timer div into the DOM
     var main = document.querySelector('#bapak');
     var first = main.children[0];
     main.insertBefore(timerDiv, first);
-}
+};
 
-
-// var timerInterval = setInterval(function() {
-//     gamePlay.time--;
-//     console.log(gamePlay.time);
-//     if (gamePlay.time === 0) {
-//         clearTimeout(timerInterval);
-//     };
-// }, 1000)
-
-
+var countdown = setInterval(function() {
+    var timerDiv = document.getElementById('timer');
+  if (gamePlay.time == 0) {
+    timerDiv.innerText = gamePlay.time;
+    clearTimeout(countdown);
+  } else {
+    gamePlay.time--;
+    timerDiv.innerText = gamePlay.time;
+  }
+}, 1000);
 
 window.onload = function() {
-    timer();
+    createTimer();
     GeneratePattern();
     document.addEventListener('keydown',press);
     document.addEventListener('keydown',checkCorrect)

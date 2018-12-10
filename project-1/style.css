@@ -27,7 +27,7 @@ html {
 	position: relative;
 	margin: 0 auto;
 	width: 225px;
-	height:500px;
+	height:550px;
 	text-align: center;
 }
 
@@ -99,5 +99,22 @@ html {
 	border-radius: 10px;
 }
 
+#timer {
+  font-size: 8em;
+  color: #ffffff;
+  font-weight: 600;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  margin: 0;
+  padding: 0;
+  font-family: tahoma;
+/*  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;*/
+  transition: .40s;
+}
 
 
