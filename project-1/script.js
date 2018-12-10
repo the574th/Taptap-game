@@ -24,6 +24,13 @@ var familyOfBoxes = {
         numOfClicks: 0
     }
 };
+
+var player = {
+    score: 0,
+    name: null,
+}
+
+
 //      variables for colors, for easier reference
 var red = familyOfBoxes.red;
 var yellow = familyOfBoxes.yellow;
@@ -55,7 +62,7 @@ var makeBoxes = function(color, numOfBoxes) {
 
 
 
-//      Function to change box from empty border to filled solid by replacing classes
+//      Change box from empty border to Filled Solid by replacing classes
 //      This affect only one box, which is the bottom
 var borderToFill = function (color) {
     var all = document.querySelectorAll("." + color.classBorder);
@@ -63,9 +70,8 @@ var borderToFill = function (color) {
     bottom.classList.replace(color.classBorder, color.classFill);
 }
 
-
-//      Function to change boxes from filled solid to empty boxes by replacing classes
-//      This affect all boxes of one color, one column basically
+//      Change boxes from Filled Solid to Empty Boxes by replacing classes
+//      This affect ALL boxes of one color, one column basically
 var fillToBorderBoxes = function (color) {
     var all = document.querySelectorAll("." + color.classFill);
     all.forEach(function(box) {
@@ -73,17 +79,8 @@ var fillToBorderBoxes = function (color) {
     })
 }
 
-
-//      Function to basically restart the 'pattern', all boxes emptied and try again
-// var doItAgain = function () {
-//     red.numOfClicks = 0;
-//     yellow.numOfClicks = 0;
-//     green.numOfClicks = 0;
-//     fillToBorderBoxes(red);
-//     fillToBorderBoxes(yellow);
-//     fillToBorderBoxes(green);
-// }
-
+//      Function to basically restart the 'pattern',
+//      Change boxes from solid fill to empty border, numOfClick reset.
 var doItAgainV2 = function () {
     Object.keys(familyOfBoxes).forEach(function(key) {
     familyOfBoxes[key].numOfClicks = 0;
@@ -91,33 +88,36 @@ var doItAgainV2 = function () {
  });
 };
 
-    // familyOfBoxes.forEach(function(color) {
-    //     color.numOfClicks = 0;
-    //     fillToBorderBoxes(color);
-    // });
 
-
-
-var yayNextPattern = function () {
-    red.numOfClicks = 0;
-    yellow.numOfClicks = 0;
-    green.numOfClicks = 0;
-    setTimeout(function() {
-        alert("yay")
-    }, 100)
-    red.array = [];
-    document.querySelectorAll("."+red.classFill).forEach(e => e.parentNode.removeChild(e));
-
-}
+var yayCompleted = function () {
+    Object.keys(familyOfBoxes).forEach(function(key) {
+//      Reset numOfClicks and array, fresh start
+    familyOfBoxes[key].numOfClicks = 0;
+    familyOfBoxes[key].array = [];
+//      Remove all the boxes div in HTML DOM.
+    document.querySelectorAll("."+familyOfBoxes[key].classFill).forEach(e => e.parentNode.removeChild(e));
+    var child = document.querySelector('#'+familyOfBoxes[key].boxid+'Wrong')
+    child.remove();
+ });
+};
 
 
 var checkCorrect = function () {
     if ((red.numOfClicks === red.array.length-1) && (yellow.numOfClicks === yellow.array.length-1) && (green.numOfClicks === green.array.length-1)){
-        console.log("yay");
-        yayNextPattern();
+        setTimeout(function() {
+            var next = confirm("yay");
+            if (next) {
+                yayCompleted();
+            };
+        }, 100)
     }
 }
 
+var GeneratePattern = function () {
+    makeBoxes(red, (Math.random() * 5))
+    makeBoxes(yellow, (Math.random() * 5))
+    makeBoxes(green, (Math.random() * 5))
+}
 
 
 var press = function (e) {
@@ -157,10 +157,33 @@ var press = function (e) {
 }
 
 
+// var time = 10;
+
+// // var timer = setInterval( function() {
+// //     time--;
+// //     console.log(time)
+// //     if (time === 0){
+// //         clearTimeout(timer)
+// //     };
+// // }, 1000)
+
+// // var timer = function() {
+// //     time--;
+// //     console.log(time);
+// // }
+
+// var timerSet = setInterval(function() {
+//     time--;
+//     console.log(time);
+//     if (time === 0) {
+//         clearTimeout(timerSet);
+//     };
+// }, 1000)
+
+
+
 window.onload = function() {
-    makeBoxes(yellow, 5);
-    makeBoxes(red, 3);
-    makeBoxes(green, 4);
+    GeneratePattern()
     document.addEventListener('keydown',press);
     document.addEventListener('keydown',checkCorrect)
 }
