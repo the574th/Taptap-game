@@ -70,7 +70,6 @@
     transform: scale(1);
     opacity: 1;
   }
-
 }
 
 .redBoxWrong {
@@ -124,6 +123,20 @@
   }
   100% {
     opacity: 1;
+  }
+
+}
+
+.greenToRedBG {
+	animation: changeBackground 1.25s ease-in-out 0s 1;
+}
+
+@keyframes changeBackground {
+  0% {
+  	background-color: #80C8BD;
+}
+  100% {
+  	background-color: #E2633D;
   }
 
 }

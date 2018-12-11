@@ -35,8 +35,9 @@ var gamePlay = {
     score: 0,
     name: null,
     time: 30,
+    level: 1,
+    numOfColors: [familyOfBoxes.red, familyOfBoxes.yellow, familyOfBoxes.green],
 }
-
 
 //      variables for colors, for easier reference
 var red = familyOfBoxes.red;
@@ -94,7 +95,7 @@ var doItAgainV2 = function (color) {
     document.removeEventListener('keydown',press);
     document.removeEventListener('keydown',checkCorrect);
 
-//      Evoke animation be toggling class first
+//      Evoke animation by toggling class first
     var wrongBox = document.getElementById(color.boxid+'Wrong');
     wrongBox.classList.toggle(color.classWrong);
 
@@ -120,8 +121,20 @@ var doItAgainV2 = function (color) {
 
 
 var yayCorrect = function () {
-//      Add 5 points to player score
+//      Add 5 points to player score, update the DOM
     gamePlay.score +=5;
+    var playerScore = document.querySelector('#score');
+    playerScore.innerText = gamePlay.score;
+
+//      Update level
+    // var bg = document.querySelector('html');
+    if (gamePlay.score % 30 === 0) {
+        gamePlay.level++;
+    }
+
+    var currentLevel = document.querySelector('#level');
+    currentLevel.innerText = 'Level '+gamePlay.level;
+
 
 //      For each colors...
     Object.keys(familyOfBoxes).forEach(function(key) {
@@ -148,7 +161,7 @@ var yayCorrect = function () {
             child.remove();
         };
 
-        setTimeout(removeBoxes, 1000)
+        setTimeout(removeBoxes, 1000);
     });
 };
 
@@ -168,23 +181,55 @@ var checkCorrect = function () {
 }
 
 
+// //      Generate random patterns
+// var GeneratePattern = function () {
+
+// //      Allow player to press again after new pattern emerges
+//     document.addEventListener('keydown',press);
+//     document.addEventListener('keydown',checkCorrect)
+
+//     makeBoxes(red, (Math.random() * 5));
+//     makeBoxes(yellow, (Math.random() * 5));
+//     makeBoxes(green, (Math.random() * 5));
+
+// //      Prevent zero/no pattern from happening after above random function
+// //      remember there will always be one 'wrongBox' in every div
+//     while ((red.array.length === 1) && (yellow.array.length === 1) && (green.array.length === 1)) {
+//         makeBoxes(red, (Math.random() * 5));
+//         makeBoxes(yellow, (Math.random() * 5));
+//         makeBoxes(green, (Math.random() * 5));
+//     }
+// }
+
 //      Generate random patterns
-var GeneratePattern = function () {
+var GeneratePatternV2 = function (numOfColors, numOfMaxBoxes, numOfMinBoxes) {
 
 //      Allow player to press again after new pattern emerges
     document.addEventListener('keydown',press);
     document.addEventListener('keydown',checkCorrect)
 
-    makeBoxes(red, (Math.random() * 5));
-    makeBoxes(yellow, (Math.random() * 5));
-    makeBoxes(green, (Math.random() * 5));
+//      Put each color object into an array
+    var listofFamily = [];
+    Object.keys(familyOfBoxes).forEach(function(key) {
+        listofFamily.push(familyOfBoxes[key]);
+    });
+
+//      From function parameter, make how many color group and boxes involve
+    for (var i = 0; i < numOfColors; i++) {
+        makeBoxes(listofFamily[i], (Math.floor((Math.random() * numOfMaxBoxes) + numOfMinBoxes)));
+    }
 
 //      Prevent zero/no pattern from happening after above random function
-//      remember there will always be one 'wrongBox' in every div
-    while ((red.array.length === 1) && (yellow.array.length === 1) && (green.array.length === 1)) {
-        makeBoxes(red, (Math.random() * 5));
-        makeBoxes(yellow, (Math.random() * 5));
-        makeBoxes(green, (Math.random() * 5));
+//      Achieved this by looking through divs at DOM, push div with 'classBorder' class
+//       to a list, if return is zero, means no boxes was generated. Try again in while loop.
+    var listofBoxes = []
+    Object.keys(familyOfBoxes).forEach(function(key) {
+        listofBoxes.push(document.querySelectorAll(familyOfBoxes[key].classBorder))
+    });
+    while (listofBoxes.length === 0) {
+            for (var i = 0; i < numOfColors; i++) {
+        makeBoxes(listofFamily[i], (Math.floor((Math.random() * numOfMaxBoxes) + numOfMinBoxes)));
+    }
     }
 }
 
@@ -258,9 +303,29 @@ var countdown = setInterval(function() {
   }
 }, 1000);
 
+var scoreBoard = function () {
+
+//      Create the score div in javascript
+    var playerScore = document.createElement('div');
+    playerScore.setAttribute('id','score');
+    playerScore.innerText = gamePlay.score;
+
+    var currentLevel = document.createElement('div')
+    currentLevel.setAttribute('id','level');
+    currentLevel.innerText = 'Level '+ gamePlay.level;
+//      Appends the timer div into the DOM
+    // var main = document.querySelector('#bapak');
+    // var first = main.children[0];
+    // main.insertBefore(playerScore, first);
+    document.body.appendChild(playerScore)
+    document.body.appendChild(currentLevel)
+
+}
+
 window.onload = function() {
+    scoreBoard();
     createTimer();
-    GeneratePattern();
+    GeneratePatternV2(3,4,0);
     document.addEventListener('keydown',press);
     document.addEventListener('keydown',checkCorrect)
 }
