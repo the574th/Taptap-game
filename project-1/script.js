@@ -4,6 +4,7 @@ var familyOfBoxes = {
         classBorder: 'redBoxBorder',
         classFill: 'redBox',
         classAniHide: 'redBoxHide',
+        classWrong: 'redBoxWrong',
         boxid: 'r',
         containerId: '#redBoxesMatters',
         numOfClicks: 0
@@ -13,6 +14,7 @@ var familyOfBoxes = {
         classBorder: 'yellowBoxBorder',
         classFill: 'yellowBox',
         classAniHide: 'yellowBoxHide',
+        classWrong: 'yellowBoxWrong',
         boxid: 'y',
         containerId: '#yellowBoxesMatters',
         numOfClicks: 0
@@ -22,6 +24,7 @@ var familyOfBoxes = {
         classBorder: 'greenBoxBorder',
         classFill: 'greenBox',
         classAniHide: 'greenBoxHide',
+        classWrong: 'greenBoxWrong',
         boxid: 'g',
         containerId: '#greenBoxesMatters',
         numOfClicks: 0
@@ -31,7 +34,7 @@ var familyOfBoxes = {
 var gamePlay = {
     score: 0,
     name: null,
-    time: 15,
+    time: 30,
 }
 
 
@@ -85,11 +88,34 @@ var fillToBorderBoxes = function (color) {
 
 //      Function to basically restart the 'pattern',
 //      Change boxes from solid fill to empty border, numOfClick reset.
-var doItAgainV2 = function () {
-    Object.keys(familyOfBoxes).forEach(function(key) {
-    familyOfBoxes[key].numOfClicks = 0;
-    fillToBorderBoxes(familyOfBoxes[key]);
- });
+var doItAgainV2 = function (color) {
+
+//      prevent user from pressing when mistake happened
+    document.removeEventListener('keydown',press);
+    document.removeEventListener('keydown',checkCorrect);
+
+//      Evoke animation be toggling class first
+    var wrongBox = document.getElementById(color.boxid+'Wrong');
+    wrongBox.classList.toggle(color.classWrong);
+
+//      After 1 second....
+    var reset = function() {
+
+//      Remove the animation
+        wrongBox.classList.remove(color.classWrong);
+
+//      Reset the num of clicks
+        Object.keys(familyOfBoxes).forEach(function(key) {
+        familyOfBoxes[key].numOfClicks = 0;
+        fillToBorderBoxes(familyOfBoxes[key]);
+        });
+
+//      allow user to press again
+        document.addEventListener('keydown',press);
+        document.addEventListener('keydown',checkCorrect)
+    }
+
+    setTimeout(reset, 1500);
 };
 
 
@@ -103,6 +129,10 @@ var yayCorrect = function () {
 //      Reset numOfClicks and array, fresh start
         familyOfBoxes[key].numOfClicks = 0;
         familyOfBoxes[key].array = [];
+
+//      Prevent player from pressing while animation happens
+        document.removeEventListener('keydown',press);
+        document.removeEventListener('keydown',checkCorrect);
 
 //      Change class for animation
         var allFilledBoxes = document.querySelectorAll("." + familyOfBoxes[key].classFill);
@@ -140,6 +170,11 @@ var checkCorrect = function () {
 
 //      Generate random patterns
 var GeneratePattern = function () {
+
+//      Allow player to press again after new pattern emerges
+    document.addEventListener('keydown',press);
+    document.addEventListener('keydown',checkCorrect)
+
     makeBoxes(red, (Math.random() * 5));
     makeBoxes(yellow, (Math.random() * 5));
     makeBoxes(green, (Math.random() * 5));
@@ -164,8 +199,7 @@ var press = function (e) {
                 borderToFill(red);
             } else {
             //When you press 'a' MORE than required amount....
-                alert("ooops!");
-                doItAgainV2();
+            doItAgainV2(red)
             };
          }
 
@@ -176,8 +210,7 @@ var press = function (e) {
                 borderToFill(yellow);
             } else {
             //When you press 's' MORE than required amount....
-                alert("ooops!");
-                doItAgainV2();
+            doItAgainV2(yellow)
             }
         }
 
@@ -188,8 +221,7 @@ var press = function (e) {
                 borderToFill(green);
             } else {
             //When you press 'd' MORE than required amount....
-                alert("ooops");
-                doItAgainV2();
+            doItAgainV2(green)
             }
         }
 
