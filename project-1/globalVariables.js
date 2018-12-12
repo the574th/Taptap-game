@@ -39,6 +39,7 @@ var gamePlay = {
     createNewPattern: 'yes',
     colorsInvolvedInPattern: [],
     totalDiv: 0,
+    canPressButtonOrNot: 'yes',
 }
 
 //      variables for colors, for easier reference

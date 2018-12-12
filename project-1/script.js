@@ -36,16 +36,18 @@ var fillToBorderBoxes = function (color) {
     var all = document.querySelectorAll("." + color.classFill);
     all.forEach(function(box) {
         box.classList.replace(color.classFill, color.classBorder);
-    })
-}
+    });
+        document.addEventListener('keydown',press);
+        document.addEventListener('keydown',checkCorrectV2)
+    }
 
 //      Function to basically restart the 'pattern',
 //      Change boxes from solid fill to empty border, numOfClick reset.
 var doItAgainV2 = function (color) {
 
 //      prevent user from pressing when mistake happened
-    document.removeEventListener('keydown',press);
-    document.removeEventListener('keydown',checkCorrectV2);
+        document.removeEventListener('keydown',press);
+        document.removeEventListener('keydown',checkCorrectV2);
 
 //      Evoke animation by toggling class first
     var wrongBox = document.getElementById(color.boxid+'Wrong');
@@ -62,10 +64,6 @@ var doItAgainV2 = function (color) {
         familyOfBoxes[key].numOfClicks = 0;
         fillToBorderBoxes(familyOfBoxes[key]);
         });
-
-//      allow user to press again
-        document.addEventListener('keydown',press);
-        document.addEventListener('keydown',checkCorrectV2)
     }
 
     setTimeout(reset, 1500);
@@ -79,7 +77,6 @@ var yayCorrect = function () {
     playerScore.innerText = gamePlay.score;
 
 //      Update level
-    // var bg = document.querySelector('html');
     if (gamePlay.score % 30 === 0) {
         gamePlay.level++;
     }
@@ -87,17 +84,12 @@ var yayCorrect = function () {
     var currentLevel = document.querySelector('#level');
     currentLevel.innerText = 'Level '+gamePlay.level;
 
+//      Prevent player from pressing while animation happens
+            document.removeEventListener('keydown',press);
+            document.removeEventListener('keydown',checkCorrectV2)
 
 //      For each colors...
     Object.keys(familyOfBoxes).forEach(function(key) {
-
-//      Reset numOfClicks and array, fresh start
-        familyOfBoxes[key].numOfClicks = 0;
-        familyOfBoxes[key].array = [];
-
-//      Prevent player from pressing while animation happens
-        document.removeEventListener('keydown',press);
-        document.removeEventListener('keydown',checkCorrectV2);
 
 //      Change class for animation
         var allFilledBoxes = document.querySelectorAll("." + familyOfBoxes[key].classFill);
@@ -110,41 +102,34 @@ var yayCorrect = function () {
 //      Remove all the boxes div in HTML DOM.
         var colors = gamePlay.colorsInvolvedInPattern;
         var removeBoxes = function() {
+            var nodeList = [];
             for (var i = 0; i < colors.length; i++ ) {
-                document.querySelectorAll("."+colors[i].classAniHide).forEach(e => e.parentNode.removeChild(e));
-            var child = document.querySelector('#'+colors[key].boxid+'Wrong');
-            console.log(child)
-        };
+                nodeList.push(document.querySelectorAll("."+colors[i].classAniHide));
+                var child = document.querySelector('#'+colors[i].boxid+'Wrong');
+                child.remove();
+            }
+
+            for (var i = 0; i < nodeList.length; i++ ) {
+                nodeList[i].forEach(function(key) {
+                    key.parentNode.removeChild(key)
+                })
+            }
+
+            Object.keys(familyOfBoxes).forEach(function(key) {
+//      Reset numOfClicks and array, fresh start
+                familyOfBoxes[key].numOfClicks = 0;
+                familyOfBoxes[key].array = [];
+            });
+
+            gamePlay.colorsInvolvedInPattern = [];
+            gamePlay.totalDiv = 0;
+
+        }
+
 
         setTimeout(removeBoxes, 1000);
-
-// //      Remove all the boxes div in HTML DOM.
-//         var removeBoxes = function() {
-//             document.querySelectorAll("."+familyOfBoxes[key].classAniHide).forEach(e => e.parentNode.removeChild(e));
-//             var child = document.querySelector('#'+familyOfBoxes[key].boxid+'Wrong');
-//             console.log(child)
-//         };
-
-//         setTimeout(removeBoxes, 1000);
-//     });
-};
 }
 
-
-// var checkCorrect = function () {
-//     if ((red.numOfClicks === red.array.length-1) && (yellow.numOfClicks === yellow.array.length-1) && (green.numOfClicks === green.array.length-1)){
-//         setTimeout(function() {
-//             if (gamePlay.time > 0) {
-//                 yayCorrect();
-//                 gamePlay.createNewPattern = 'yes';
-//                 // setTimeout(GeneratePattern, 1500);
-//             } else if (gamePlay.time === 0) {
-//                 document.removeEventListener('keydown',press);
-//                 document.removeEventListener('keydown',checkCorrect);
-//             }
-//         }, 100)
-//     }
-// }
 
 var checkCorrectV2 = function () {
 //      First, find out what color is presence in the current pattern
@@ -161,11 +146,9 @@ var checkCorrectV2 = function () {
         setTimeout(function() {
             if (gamePlay.time > 0) {
                 yayCorrect();
-                gamePlay.createNewPattern = 'yes';
-                // setTimeout(GeneratePattern, 1500);
+                setTimeout(givePattern, 1500);
             } else if (gamePlay.time === 0) {
-                document.removeEventListener('keydown',press);
-                document.removeEventListener('keydown',checkCorrect);
+                gamePlay.canPressButtonOrNot = 'no';
             }
         }, 100)
     }
@@ -177,8 +160,8 @@ var checkCorrectV2 = function () {
 var GeneratePatternV2 = function (numOfColors, numOfMaxBoxes, numOfMinBoxes) {
 
 //      Allow player to press again after new pattern emerges
-    document.addEventListener('keydown',press);
-    document.addEventListener('keydown',checkCorrectV2)
+        document.addEventListener('keydown',press);
+        document.addEventListener('keydown',checkCorrectV2)
 
 //      Since i might add more 'colors' and variations into the game, create listofFamily[] will help to easily refer to them
     var listofFamily = [];
@@ -186,45 +169,26 @@ var GeneratePatternV2 = function (numOfColors, numOfMaxBoxes, numOfMinBoxes) {
         listofFamily.push(familyOfBoxes[key]);
     });
 
-//     if the number of boxes generated by random is zero, keep making
-    while (gamePlay.totalDiv === 0) {
-
-//      Make boxes according to the parameters of the GeneratePatternV2
+    var sumOfRandomNumbers = 0;
+    while (sumOfRandomNumbers === 0) {
+        var randomNumbers = [];
         for (var i = 0; i < numOfColors; i++) {
-            makeBoxes(listofFamily[i], (Math.floor((Math.random() * numOfMaxBoxes) + numOfMinBoxes)));
+            randomNumbers.push((Math.floor((Math.random() * numOfMaxBoxes) + numOfMinBoxes)));
         }
-
-
-//      Sometimes, math.random() above might generate zero resulting in no boxes showing on screen
-//      To prevent that, we have to look at DOM and check if any boxes were created
-//      Since boxes are created with class of '.classborder', we can use this to identify and search them
-//      If no div with class of '.classborder' were created, means no boxes
-        var listofBoxes = [];
-        Object.keys(familyOfBoxes).forEach(function(key) {
-            listofBoxes.push(document.querySelectorAll('.'+familyOfBoxes[key].classBorder));
-        });
-
-        var nodeObjectlength = [];
-        Object.keys(listofBoxes).forEach(function(key) {
-        nodeObjectlength.push(listofBoxes[key].length)
-        });
-
-//      Get the total number of boxes generated by
-        for (var i = 0; i < nodeObjectlength.length; i++) {
-           gamePlay.totalDiv += nodeObjectlength[i];
+        for (var i = 0; i < randomNumbers.length; i++) {
+               sumOfRandomNumbers += randomNumbers[i];
+            }
         }
+        console.log(randomNumbers)
 
-        console.log(gamePlay.totalDiv);
+    for (var i = 0; i < numOfColors; i++) {
+        makeBoxes(listofFamily[i], randomNumbers[i])
     }
 
-//      Let the game knows the colors involved in the pattern by Updating gamePlay.colorsInvolvedInPattern
-//      Helpful in other functions
     for (var i = 0; i < numOfColors; i++) {
         gamePlay.colorsInvolvedInPattern.push(listofFamily[i]);
     }
 
-//      Let the game knows that we don't need to create any pattern for now
-    gamePlay.createNewPattern = 'no';
 }
 
 
@@ -266,8 +230,7 @@ var press = function (e) {
 
 //      After time is up, players can't press anymore...
     } else {
-        document.removeEventListener('keydown',press);
-        document.removeEventListener('keydown',checkCorrect);
+        gamePlay.canPressButtonOrNot = 'no';
         }
 
 }
@@ -307,25 +270,37 @@ var scoreBoard = function () {
     var currentLevel = document.createElement('div')
     currentLevel.setAttribute('id','level');
     currentLevel.innerText = 'Level '+ gamePlay.level;
-//      Appends the timer div into the DOM
-    // var main = document.querySelector('#bapak');
-    // var first = main.children[0];
-    // main.insertBefore(playerScore, first);
     document.body.appendChild(playerScore)
     document.body.appendChild(currentLevel)
-
 }
+
+var givePattern = function() {
+    if(gamePlay.time > 0) {
+        if (gamePlay.level === 1) {
+            GeneratePatternV2(2, 4, 0);
+        } else if (gamePlay.level === 2) {
+            GeneratePatternV2(3, 3, 0);
+        }
+    }
+}
+
+// var overallEventListener = function() {
+//         if (gamePlay.canPressButtonOrNot === 'yes') {
+            // document.addEventListener('keydown',press);
+            // document.addEventListener('keydown',checkCorrectV2)
+//         }
+//         else if (gamePlay.canPressButtonOrNot === 'no') {
+        // document.removeEventListener('keydown',press);
+        // document.removeEventListener('keydown',checkCorrectV2);
+//         }
+
+// }
 
 window.onload = function() {
     scoreBoard();
     createTimer();
-    if(gamePlay.time > 0) {
-        if ((gamePlay.level === 1) && (gamePlay.createNewPattern === 'yes')) {
-            GeneratePatternV2(2, 4, 0);
-        } else if ((gamePlay.level === 2) && (gamePlay.createNewPattern === 'yes')) {
-            GeneratePatternV2(3, 3, 0);
-        }
-    }
-    document.addEventListener('keydown',press);
-    document.addEventListener('keydown',checkCorrectV2)
+    givePattern();
+    // if (gamePlay.time > 0) {
+    // overallEventListener();
+    // }
 }
