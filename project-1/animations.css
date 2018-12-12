@@ -22,6 +22,23 @@
   animation: dissolveIn 1.25s ease-in-out 0s 1;
 }
 
+.blueBoxHide {
+	width: 75px;
+	height: 75px;
+	background-color: #85CECA;
+	border-radius: 10px;
+  animation: dissolveIn 1.25s ease-in-out 0s 1;
+}
+
+.maroonBoxHide {
+	width: 75px;
+	height: 75px;
+	background-color: #C38D9D;
+	border-radius: 10px;
+  animation: dissolveIn 1.25s ease-in-out 0s 1;
+}
+
+
 @keyframes dissolveIn {
   0% {
     transform: scale(1);
@@ -61,6 +78,25 @@
 	animation: dissolveOut 1.25s ease-in-out 0s 1;
 }
 
+.blueBoxBorderComeOut {
+	width: 65px;
+	height: 65px;
+	border: 5px solid #85CECA;
+	border-style: dashed;
+	border-radius: 10px;
+	animation: dissolveOut 1.25s ease-in-out 0s 1;
+}
+
+
+.maroonBoxBorderComeOut {
+	width: 65px;
+	height: 65px;
+	border: 5px solid #C38D9D;
+	border-style: dashed;
+	border-radius: 10px;
+	animation: dissolveOut 1.25s ease-in-out 0s 1;
+}
+
 @keyframes dissolveOut {
   0% {
     transform: scale(0);
@@ -92,6 +128,22 @@
 	width: 75px;
 	height: 75px;
 	background-color: #40B3A2;
+	border-radius: 10px;
+  animation: blink 1s cubic-bezier(1,0,0,1)  1;
+}
+
+.blueBoxWrong {
+	width: 75px;
+	height: 75px;
+	background-color: #85CECA;
+	border-radius: 10px;
+  animation: blink 1s cubic-bezier(1,0,0,1)  1;
+}
+
+.maroonBoxWrong {
+	width: 75px;
+	height: 75px;
+	background-color: #C38D9D;
 	border-radius: 10px;
   animation: blink 1s cubic-bezier(1,0,0,1)  1;
 }

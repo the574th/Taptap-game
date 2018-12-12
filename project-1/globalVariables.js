@@ -7,7 +7,8 @@ var familyOfBoxes = {
         classWrong: 'redBoxWrong',
         boxid: 'r',
         containerId: '#redBoxesMatters',
-        numOfClicks: 0
+        numOfClicks: 0,
+        keycode: 65
     },
     yellow: {
         array: [],
@@ -17,7 +18,8 @@ var familyOfBoxes = {
         classWrong: 'yellowBoxWrong',
         boxid: 'y',
         containerId: '#yellowBoxesMatters',
-        numOfClicks: 0
+        numOfClicks: 0,
+        keycode: 83
     },
     green: {
         array: [],
@@ -27,8 +29,31 @@ var familyOfBoxes = {
         classWrong: 'greenBoxWrong',
         boxid: 'g',
         containerId: '#greenBoxesMatters',
-        numOfClicks: 0
-    }
+        numOfClicks: 0,
+        keycode: 68
+    },
+    blue: {
+        array: [],
+        classBorder: 'blueBoxBorder',
+        classFill: 'blueBox',
+        classAniHide: 'blueBoxHide',
+        classWrong: 'blueBoxWrong',
+        boxid: 'b',
+        containerId: '#blueBoxesMatters',
+        numOfClicks: 0,
+        keycode: 70
+    },
+    maroon: {
+        array: [],
+        classBorder: 'maroonBoxBorder',
+        classFill: 'maroonBox',
+        classAniHide: 'maroonBoxHide',
+        classWrong: 'maroonBoxWrong',
+        boxid: 'm',
+        containerId: '#maroonBoxesMatters',
+        numOfClicks: 0,
+        keycode: 71
+    },
 };
 
 var gamePlay = {
@@ -46,3 +71,5 @@ var gamePlay = {
 var red = familyOfBoxes.red;
 var yellow = familyOfBoxes.yellow;
 var green = familyOfBoxes.green;
+var blue = familyOfBoxes.blue;
+var maroon = familyOfBoxes.maroon;

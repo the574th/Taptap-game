@@ -41,6 +41,20 @@ body{
 	left:150px;
 }
 
+#blueBoxesMatters {
+	display: inline-block;
+	position: absolute;
+	bottom:0 ;
+	left:225px;
+}
+
+#maroonBoxesMatters {
+	display: inline-block;
+	position: absolute;
+	bottom:0 ;
+	left:300px;
+}
+
 
 .redBoxBorder {
 	width: 65px;
@@ -86,6 +100,37 @@ body{
 	background-color: #40B3A2;
 	border-radius: 10px;
 }
+
+.blueBoxBorder {
+	width: 65px;
+	height: 65px;
+	border: 5px solid #85CECA;
+	border-style: dashed;
+	border-radius: 10px;
+}
+
+.blueBox {
+	width: 75px;
+	height: 75px;
+	background-color: #85CECA;
+	border-radius: 10px;
+}
+
+.maroonBoxBorder {
+	width: 65px;
+	height: 65px;
+	border: 5px solid #C38D9D;
+	border-style: dashed;
+	border-radius: 10px;
+}
+
+.maroonBox {
+	width: 75px;
+	height: 75px;
+	background-color: #C38D9D;
+	border-radius: 10px;
+}
+
 
 #timer {
   font-size: 8em;
