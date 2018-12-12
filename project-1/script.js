@@ -169,6 +169,7 @@ var GeneratePatternV2 = function (numOfColors, numOfMaxBoxes, numOfMinBoxes) {
         listofFamily.push(familyOfBoxes[key]);
     });
 
+//      Prevent Random numbers from creating all zero possibilites
     var sumOfRandomNumbers = 0;
     while (sumOfRandomNumbers === 0) {
         var randomNumbers = [];
@@ -181,10 +182,12 @@ var GeneratePatternV2 = function (numOfColors, numOfMaxBoxes, numOfMinBoxes) {
         }
         console.log(randomNumbers)
 
+//      Make boxes
     for (var i = 0; i < numOfColors; i++) {
         makeBoxes(listofFamily[i], randomNumbers[i])
     }
 
+//      Let game know which colors are involved
     for (var i = 0; i < numOfColors; i++) {
         gamePlay.colorsInvolvedInPattern.push(listofFamily[i]);
     }
@@ -277,30 +280,19 @@ var scoreBoard = function () {
 var givePattern = function() {
     if(gamePlay.time > 0) {
         if (gamePlay.level === 1) {
-            GeneratePatternV2(2, 4, 0);
+            GeneratePatternV2(2, 3, 0);
         } else if (gamePlay.level === 2) {
-            GeneratePatternV2(3, 3, 0);
+            GeneratePatternV2(2, 5, 1);
+        } else if (gamePlay.level === 3) {
+            GeneratePatternV2(3, 3, 1);
+        } else if (gamePlay.level === 4) {
+            GeneratePatternV2(3, 4, 2);
         }
     }
 }
-
-// var overallEventListener = function() {
-//         if (gamePlay.canPressButtonOrNot === 'yes') {
-            // document.addEventListener('keydown',press);
-            // document.addEventListener('keydown',checkCorrectV2)
-//         }
-//         else if (gamePlay.canPressButtonOrNot === 'no') {
-        // document.removeEventListener('keydown',press);
-        // document.removeEventListener('keydown',checkCorrectV2);
-//         }
-
-// }
 
 window.onload = function() {
     scoreBoard();
     createTimer();
     givePattern();
-    // if (gamePlay.time > 0) {
-    // overallEventListener();
-    // }
 }
