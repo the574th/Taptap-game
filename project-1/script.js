@@ -21,7 +21,6 @@ var makeBoxes = function(color, numOfBoxes) {
     });
 }
 
-
 //      Change box from Empty Border to Filled Solid by replacing classes
 //      This affect only one box, which is the bottom
 var borderToFill = function (color) {
@@ -77,10 +76,8 @@ var yayCorrect = function () {
     playerScore.innerText = gamePlay.score;
 
 //      Update level
-    if (gamePlay.score % 20 === 0) {
-        gamePlay.level++;
-        gamePlay.time = gamePlay.time +5;
-    }
+        levelUp();
+        // gamePlay.time = gamePlay.time +5;
 
     var currentLevel = document.querySelector('#level');
     currentLevel.innerText = 'Level '+gamePlay.level;
@@ -195,16 +192,6 @@ var GeneratePatternV2 = function (numOfColors, numOfMaxBoxes, numOfMinBoxes) {
 
 }
 
-var colorPress = function (color) {
-    if ((e.keyCode === color.keycode) && (gamePlay.colorsInvolvedInPattern.includes(color))) {
-        color.numOfClicks++;
-        if (color.numOfClicks < color.array.length) {
-            borderToFill(color);
-        } else {
-            doItAgainV2(color)
-        };
-    }
-}
 
 var colorPress = function (color) {
         color.numOfClicks++;
@@ -251,61 +238,6 @@ var press = function (e) {
 }
 
 
-// var press = function (e) {
-//     if (gamePlay.time > 0) {
-
-// //      When you press 'a', this will happen..
-//          if ((e.keyCode === 65) && (gamePlay.colorsInvolvedInPattern.includes(red))) {
-//             red.numOfClicks++;
-//             if (red.numOfClicks < red.array.length) {
-//                 borderToFill(red);
-//             } else {
-//             //When you press 'a' MORE than required amount....
-//             doItAgainV2(red)
-//             };
-//          }
-
-// //      When you press 's', this will happen..
-//          if ((e.keyCode === 83) && (gamePlay.colorsInvolvedInPattern.includes(yellow))) {
-//             yellow.numOfClicks++;
-//             if (yellow.numOfClicks < yellow.array.length) {
-//                 borderToFill(yellow);
-//             } else {
-//             //When you press 's' MORE than required amount....
-//             doItAgainV2(yellow)
-//             }
-//         }
-
-// //      When you press 'd', this will happen..
-//          if ((e.keyCode === 68) && (gamePlay.colorsInvolvedInPattern.includes(green))) {
-//             green.numOfClicks++;
-//             if (green.numOfClicks < green.array.length) {
-//                 borderToFill(green);
-//             } else {
-//             //When you press 'd' MORE than required amount....
-//             doItAgainV2(green)
-//             }
-//         }
-
-// //      When you press 'f', this will happen..
-//          if ((e.keyCode === 70) && (gamePlay.colorsInvolvedInPattern.includes(blue))) {
-//             blue.numOfClicks++;
-//             if (blue.numOfClicks < blue.array.length) {
-//                 borderToFill(blue);
-//             } else {
-//             //When you press 'd' MORE than required amount....
-//             doItAgainV2(blue)
-//             }
-//         }
-
-// //      After time is up, players can't press anymore...
-//     } else {
-//         gamePlay.canPressButtonOrNot = 'no';
-//         }
-
-// }
-
-
 var createTimer = function () {
 
 //      Creates the timer div in javascript
@@ -319,16 +251,6 @@ var createTimer = function () {
     main.insertBefore(timerDiv, first);
 };
 
-var countdown = setInterval(function() {
-    var timerDiv = document.getElementById('timer');
-  if (gamePlay.time == 0) {
-    timerDiv.innerText = gamePlay.time;
-    clearTimeout(countdown);
-  } else {
-    gamePlay.time--;
-    timerDiv.innerText = gamePlay.time;
-  }
-}, 1000);
 
 var scoreBoard = function () {
 
@@ -344,30 +266,11 @@ var scoreBoard = function () {
     document.body.appendChild(currentLevel)
 }
 
-var givePattern = function() {
-    if(gamePlay.time > 0) {
-        if (gamePlay.level === 1) {
-            GeneratePatternV2(2, 3, 0);
-        } else if (gamePlay.level === 2) {
-            GeneratePatternV2(2, 4, 1);
-        } else if (gamePlay.level === 3) {
-            GeneratePatternV2(3, 4, 1);
-        } else if (gamePlay.level === 4) {
-            GeneratePatternV2(3, 4, 2);
-        } else if (gamePlay.level === 5) {
-            GeneratePatternV2(4, 4, 1);
-        } else if (gamePlay.level === 6) {
-            GeneratePatternV2(4, 4, 2);
-        } else if (gamePlay.level === 7) {
-            GeneratePatternV2(5, 4, 1);
-        } else if (gamePlay.level === 8) {
-            GeneratePatternV2(5, 4, 2);
-        }
-    }
-}
 
 window.onload = function() {
     scoreBoard();
     createTimer();
+    countdown();
     givePattern();
 }
+

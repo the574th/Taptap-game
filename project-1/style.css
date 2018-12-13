@@ -1,5 +1,5 @@
 body{
-	background-color: #80C8BD;
+	background-color: #E8977F;
 }
 
 #bapak {
@@ -11,13 +11,14 @@ body{
 	text-align: center;
 }
 
+
 #wrapper {
-/*	background-color: black;*/
-	position: relative;
+	position: absolute;
 	margin: 0 auto;
 	width: 225px;
 	height:550px;
 	text-align: center;
+	left: 65px;
 }
 
 #redBoxesMatters {

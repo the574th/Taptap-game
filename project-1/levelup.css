@@ -1,0 +1,129 @@
+#timer {
+  font-size: 8em;
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 6px (0,0,0,1);
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  margin: 0;
+  padding: 0;
+  font-family: 'VT323', monospace;
+  transition: .40s;
+}
+
+#score {
+	font-family: 'VT323', monospace;
+	font-size: 3em;
+	color: #ffffff;
+	text-align: center;
+	background-color: #239D9E;
+	border-radius: 10px;
+	box-shadow: 0 4px #00868F, 0 6px #60968E;
+	padding: 2px;
+	width: 100px;
+	position: absolute;
+	top: 8%;
+	left: 10%;
+	;
+}
+
+#result {
+	font-family: 'VT323', monospace;
+	font-size: 3em;
+	color: #ffffff;
+	text-align: center;
+	background-color: #239D9E;
+	width: 400px;
+	height: 250px;
+	position: absolute;
+	left: 34.5%;
+/*	bottom: 24%;*/
+	border-radius: 10px;
+	box-shadow: 0 5px #00868F, 0 8px #60968E;
+	animation: resultFalling 1.25s cubic-bezier(0.36, 0.46, 0.27, 1.55)0s 1;
+	animation-fill-mode: forwards;
+}
+
+#resultText {
+	position: relative;
+	top: 30%;
+}
+
+@keyframes resultFalling {
+  0% {
+  	bottom: 100%;
+}
+	50% {
+		bottom: 28%;
+}
+	75% {
+		bottom: 38%;
+	}
+  100% {
+  	bottom: 28%;
+  }
+
+}
+
+
+
+
+
+.redToYellowBG {
+	animation: redToYellowBg 1.25s ease-in-out 0s 1;
+	animation-fill-mode: forwards;
+}
+
+@keyframes redToYellowBg {
+  0% {
+  	background-color: #E8977F;
+}
+  100% {
+  	background-color: #EDB996;
+  }
+
+}
+
+.yellowToGreenBG {
+	animation: yellowToGreenBG 1.25s ease-in-out 0s 1;
+	animation-fill-mode: forwards;
+}
+@keyframes yellowToGreenBG {
+  0% {
+  	background-color: #EDB996;
+}
+  100% {
+  	background-color: #80C8BD;
+  }
+ }
+
+.greenToBlueBG {
+	animation: greenToBlueBG 1.25s ease-in-out 0s 1;
+	animation-fill-mode: forwards;
+}
+
+@keyframes greenToBlueBG {
+  0% {
+  	background-color: #80C8BD;
+}
+  100% {
+  	background-color: #B6E2DF;
+  }
+}
+
+.blueToMaroonBG {
+	animation: blueToMaroonBG 1.25s ease-in-out 0s 1;
+	animation-fill-mode: forwards;
+}
+
+@keyframes blueToMaroonBG {
+  0% {
+  	background-color: #B6E2DF;
+}
+  100% {
+  	background-color: #CFA4B1;
+  }
+}
+
