@@ -1,3 +1,8 @@
+/*							This CSS file consists:							*/
+/*							BoxHide, WrongBoxBlink2							*/
+
+
+
 .redBoxHide {
 	width: 75px;
 	height: 75px;
@@ -50,6 +55,11 @@
   }
 
 }
+
+
+
+/*		NEVER USED - 17 DECEMBER 2018		*/
+
 
 .redBoxBorderComeOut {
 	width: 65px;
@@ -148,18 +158,6 @@
   animation: blink 1s cubic-bezier(1,0,0,1)  1;
 }
 
-@keyframes dissolveIn {
-  0% {
-    transform: scale(1);
-    opacity: 1;;
-}
-  100% {
-    transform: scale(0);
-    opacity: 0;
-  }
-
-}
-
 @keyframes blink {
   0% {
     opacity: 1;
@@ -175,20 +173,6 @@
   }
   100% {
     opacity: 1;
-  }
-
-}
-
-.greenToRedBG {
-	animation: changeBackground 1.25s ease-in-out 0s 1;
-}
-
-@keyframes changeBackground {
-  0% {
-  	background-color: #80C8BD;
-}
-  100% {
-  	background-color: #E2633D;
   }
 
 }

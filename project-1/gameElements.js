@@ -7,8 +7,6 @@ var restartGame = function() {
     endResultLocation.remove();
     endResult.remove();
 
-
-//remove
     Object.keys(familyOfBoxes).forEach(function(key) {
         var myNode = document.querySelector(familyOfBoxes[key].containerId);
         while (myNode.firstChild) {
@@ -42,16 +40,6 @@ var restartGame = function() {
 
 }
 
-var yesOrNo = function (e) {
-     if (e.keyCode === 89) {
-        restartGame();
-    }
-
-     if (e.keyCode === 78) {
-        party()
-    }
-}
-
 var results = function () {
 
     var endResult = document.createElement('div');
@@ -72,8 +60,30 @@ var results = function () {
     document.addEventListener('keydown',yesOrNo);
 }
 
+var yesOrNo = function (e) {
+     if (e.keyCode === 89) {
+        restartGame();
+    }
+
+     if (e.keyCode === 78) {
+        party()
+    }
+}
 
 
+
+var createTimer = function () {
+
+//      Creates the timer div in javascript
+    var timerDiv = document.createElement('div');
+    timerDiv.setAttribute('id','timer');
+    timerDiv.innerText = gamePlay.time;
+
+//      Appends the timer div into the DOM
+    var main = document.querySelector('#bapak');
+    var first = main.children[0];
+    main.insertBefore(timerDiv, first);
+};
 
 
 var countdown = function() {
