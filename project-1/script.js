@@ -1,36 +1,45 @@
 var makeBoxes = function(color, numOfBoxes) {
     numOfBoxes = parseInt(numOfBoxes);
 
-//     Create invisible box a.k.a the extra wrong box
-        color.array.push( document.createElement("div") );
-        var wrongBox = color.array[0];
-        wrongBox.id = color.boxid+'Wrong';
+    // Create the extra wrong box
+    color.array.push( document.createElement("div") );
+    var wrongBox = color.array[0];
+    wrongBox.id = color.boxid+'Wrong';
 
-//      Create the number of boxes by adding div, id & class
-//      i+1 is there to prevent changing of the invisible box
+
+    // Create the number of boxes by adding div, id & class
+    // i+1 is there to prevent changing of the invisible box
     for (var i=0; i<numOfBoxes; i++) {
         color.array.push( document.createElement("div") );
         color.array[i+1].id = color.boxid+i;
         color.array[i+1].classList.add(color.classBorder);
     };
 
-//      Appends the boxes into the DOM under their specific color group div
+
+    // Create Parent div to contain the color boxes
+    let parentDiv = document.createElement("div");
+    parentDiv.classList.add(color.containerId)
+    let masterDiv = document.querySelector('#wrapper');
+    masterDiv.appendChild(parentDiv);
+
+
+    // Appends the boxes into the DOM under their specific color group div
     color.array.forEach(function(box) {
-        var whereTheyAre = document.querySelector(color.containerId);
-        whereTheyAre.appendChild(box);
+        // var whereTheyAre = document.querySelector(color.containerId);
+        parentDiv.appendChild(box);
     });
 }
 
-//      Change box from Empty Border to Filled Solid by replacing classes
-//      This affect only one box, which is the bottom
-var borderToFill = function (color) {
+//  Change box from Empty Border to Filled Solid by replacing classes
+//  This affect only one box, which is the bottom
+var changeClassBorderToFill = function (color) {
     var all = document.querySelectorAll("." + color.classBorder);
     var bottom = all[all.length-1];
     bottom.classList.replace(color.classBorder, color.classFill);
 }
 
-//      Change boxes from Filled Solid to Empty Boxes by replacing classes
-//      This affect ALL boxes of one color, one column basically
+//  Change boxes from Filled Solid to Empty Boxes by replacing classes
+//  This affect ALL boxes of one color, one column basically
 var fillToBorderBoxes = function (color) {
     var all = document.querySelectorAll("." + color.classFill);
     all.forEach(function(box) {
@@ -40,8 +49,8 @@ var fillToBorderBoxes = function (color) {
         document.addEventListener('keydown',checkCorrectV2)
     }
 
-//      Function to basically restart the 'pattern',
-//      Change boxes from solid fill to empty border, numOfClick reset.
+        //  Function to basically restart the 'pattern',
+        //  Change boxes from solid fill to empty border, numOfClick reset.
 var doItAgainV2 = function (color) {
 
 //      prevent user from pressing when mistake happened
@@ -122,8 +131,12 @@ var yayCorrect = function () {
             gamePlay.colorsInvolvedInPattern = [];
             gamePlay.totalDiv = 0;
 
+//      Reset numOfClicks and array, fresh start
+            let masterDiv = document.querySelector('#wrapper');
+            while(masterDiv.firstChild) {
+                masterDiv.removeChild(masterDiv.firstChild);
+            }
         }
-
 
         setTimeout(removeBoxes, 1000);
 }
@@ -196,7 +209,7 @@ var GeneratePatternV2 = function (numOfColors, numOfMaxBoxes, numOfMinBoxes) {
 var colorPress = function (color) {
         color.numOfClicks++;
         if (color.numOfClicks < color.array.length) {
-            borderToFill(color);
+            changeClassBorderToFill(color);
         } else {
             doItAgainV2(color)
         };
