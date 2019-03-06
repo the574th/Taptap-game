@@ -7,11 +7,16 @@ var restartGame = function() {
     endResultLocation.remove();
     endResult.remove();
 
+    let masterDiv = document.querySelector('#wrapper');
+    while(masterDiv.firstChild) {
+        masterDiv.removeChild(masterDiv.firstChild);
+    }
+
     Object.keys(familyOfBoxes).forEach(function(key) {
-        var myNode = document.querySelector(familyOfBoxes[key].containerId);
-        while (myNode.firstChild) {
-            myNode.removeChild(myNode.firstChild);
-        }
+        // var myNode = document.querySelector(familyOfBoxes[key].containerId);
+        // while (myNode.firstChild) {
+        //     myNode.removeChild(myNode.firstChild);
+        // }
         familyOfBoxes[key].numOfClicks = 0;
         familyOfBoxes[key].array = [];
     });

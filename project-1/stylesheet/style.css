@@ -14,11 +14,10 @@ body{
 	/*background-color: green;*/
 	position: relative;
 	margin: 0 auto;
-/*width: 500px;
-	height:500px; */
 	text-align: center;
 	display: flex;
 	height: inherit;
+	bottom: 30px;
 }
 
 #wrapper {
@@ -31,6 +30,9 @@ body{
 	text-align: center;
 	left: 65px;
 }
+
+/* https://www.kirupa.com/html5/make_body_take_up_full_browser_height.htm */
+/* https://stackoverflow.com/questions/7570438/height-of-a-div-to-match-the-height-of-the-viewport */
 
 /*		Main Div for Each Color		*/
 
