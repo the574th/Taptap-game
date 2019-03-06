@@ -18,19 +18,19 @@ var makeBoxes = function(color, numOfBoxes) {
 
     // Create Parent div to contain the color boxes
     let parentDiv = document.createElement("div");
-    parentDiv.classList.add(color.containerId)
+    parentDiv.id = color.containerId;
     let masterDiv = document.querySelector('#wrapper');
     masterDiv.appendChild(parentDiv);
 
 
     // Appends the boxes into the DOM under their specific color group div
     color.array.forEach(function(box) {
-        // var whereTheyAre = document.querySelector(color.containerId);
         parentDiv.appendChild(box);
     });
 }
 
-//  Change box from Empty Border to Filled Solid by replacing classes
+
+//  Change box from Empty Border class to Filled Solid class
 //  This affect only one box, which is the bottom
 var changeClassBorderToFill = function (color) {
     var all = document.querySelectorAll("." + color.classBorder);

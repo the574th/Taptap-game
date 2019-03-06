@@ -1,7 +1,7 @@
 var restartGame = function() {
     document.removeEventListener('keydown',yesOrNo);
 
-//      Remove the result box
+    //  Remove the result box
     var endResultLocation = document.querySelector('#resultText');
     var endResult = document.querySelector('#result');
     endResultLocation.remove();
@@ -104,7 +104,7 @@ var countdown = function() {
 
 var scoreBoard = function () {
 
-//      Create the score div in javascript
+    //  Create the score div in javascript
     var playerScore = document.createElement('div');
     playerScore.setAttribute('id','score');
     playerScore.innerText = gamePlay.score;

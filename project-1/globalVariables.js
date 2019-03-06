@@ -6,7 +6,7 @@ var familyOfBoxes = {
         classAniHide: 'redBoxHide',
         classWrong: 'redBoxWrong',
         boxid: 'r',
-        containerId: '#redBoxesMatters',
+        containerId: 'redBoxesMatters',
         numOfClicks: 0,
         keycode: 65
     },
@@ -17,7 +17,7 @@ var familyOfBoxes = {
         classAniHide: 'yellowBoxHide',
         classWrong: 'yellowBoxWrong',
         boxid: 'y',
-        containerId: '#yellowBoxesMatters',
+        containerId: 'yellowBoxesMatters',
         numOfClicks: 0,
         keycode: 83
     },
@@ -28,7 +28,7 @@ var familyOfBoxes = {
         classAniHide: 'greenBoxHide',
         classWrong: 'greenBoxWrong',
         boxid: 'g',
-        containerId: '#greenBoxesMatters',
+        containerId: 'greenBoxesMatters',
         numOfClicks: 0,
         keycode: 68
     },
@@ -39,7 +39,7 @@ var familyOfBoxes = {
         classAniHide: 'blueBoxHide',
         classWrong: 'blueBoxWrong',
         boxid: 'b',
-        containerId: '#blueBoxesMatters',
+        containerId: 'blueBoxesMatters',
         numOfClicks: 0,
         keycode: 70
     },
@@ -50,7 +50,7 @@ var familyOfBoxes = {
         classAniHide: 'maroonBoxHide',
         classWrong: 'maroonBoxWrong',
         boxid: 'm',
-        containerId: '#maroonBoxesMatters',
+        containerId: 'maroonBoxesMatters',
         numOfClicks: 0,
         keycode: 71
     },
@@ -59,7 +59,7 @@ var familyOfBoxes = {
 var gamePlay = {
     score: 0,
     name: null,
-    time: 60,
+    time: 600,
     level: 1,
     createNewPattern: 'yes',
     colorsInvolvedInPattern: [],
