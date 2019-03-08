@@ -16,7 +16,7 @@ var makeBoxes = function(color, numOfBoxes) {
     };
 
 
-    // Create Parent div to contain the color boxes
+    // Create Parent Div to contain the color boxes
     let parentDiv = document.createElement("div");
     parentDiv.id = color.containerId;
     let masterDiv = document.querySelector('#wrapper');
@@ -29,7 +29,6 @@ var makeBoxes = function(color, numOfBoxes) {
     });
 }
 
-
 //  Change box from Empty Border class to Filled Solid class
 //  This affect only one box, which is the bottom
 var changeClassBorderToFill = function (color) {
@@ -37,6 +36,7 @@ var changeClassBorderToFill = function (color) {
     var bottom = all[all.length-1];
     bottom.classList.replace(color.classBorder, color.classFill);
 }
+
 
 //  Change boxes from Filled Solid to Empty Boxes by replacing classes
 //  This affect ALL boxes of one color, one column basically
@@ -49,25 +49,26 @@ var fillToBorderBoxes = function (color) {
         document.addEventListener('keydown',checkCorrectV2)
     }
 
-        //  Function to basically restart the 'pattern',
-        //  Change boxes from solid fill to empty border, numOfClick reset.
-var doItAgainV2 = function (color) {
 
-//      prevent user from pressing when mistake happened
-        document.removeEventListener('keydown',press);
-        document.removeEventListener('keydown',checkCorrectV2);
+//  Function to basically restart the 'pattern',
+//  Change boxes from solid fill to empty border, numOfClick reset.
+function doItAgainV2(color) {
 
-//      Evoke animation by toggling class first
+    //  prevent user from pressing when mistake happened
+    document.removeEventListener('keydown',press);
+    document.removeEventListener('keydown',checkCorrectV2);
+
+    //  Evoke animation by toggling class first
     var wrongBox = document.getElementById(color.boxid+'Wrong');
     wrongBox.classList.toggle(color.classWrong);
 
-//      After 1 second....
+    //  After 1 second....
     var reset = function() {
 
-//      Remove the animation
+        //  Remove the animation
         wrongBox.classList.remove(color.classWrong);
 
-//      Reset the num of clicks
+        //  Reset the num of clicks
         Object.keys(familyOfBoxes).forEach(function(key) {
         familyOfBoxes[key].numOfClicks = 0;
         fillToBorderBoxes(familyOfBoxes[key]);
@@ -79,26 +80,26 @@ var doItAgainV2 = function (color) {
 
 
 var yayCorrect = function () {
-//      Add 5 points to player score, update the DOM
+    //  Add 5 points to player score, update the DOM
     gamePlay.score +=5;
     var playerScore = document.querySelector('#score');
     playerScore.innerText = gamePlay.score;
 
-//      Update level
+        //  Update level
         levelUp();
         // gamePlay.time = gamePlay.time +5;
 
     var currentLevel = document.querySelector('#level');
     currentLevel.innerText = 'Level '+gamePlay.level;
 
-//      Prevent player from pressing while animation happens
+            //  Prevent player from pressing while animation happens
             document.removeEventListener('keydown',press);
             document.removeEventListener('keydown',checkCorrectV2)
 
-//      For each colors...
+    //  For each colors...
     Object.keys(familyOfBoxes).forEach(function(key) {
 
-//      Change class for animation
+        //  Change class for animation
         var allFilledBoxes = document.querySelectorAll("." + familyOfBoxes[key].classFill);
         allFilledBoxes.forEach(function(box) {
             box.classList.replace(familyOfBoxes[key].classFill, familyOfBoxes[key].classAniHide);
@@ -106,7 +107,7 @@ var yayCorrect = function () {
     });
 
 
-//      Remove all the boxes div in HTML DOM.
+        //  Remove all the boxes div in HTML DOM.
         var colors = gamePlay.colorsInvolvedInPattern;
         var removeBoxes = function() {
             var nodeList = [];
@@ -123,7 +124,7 @@ var yayCorrect = function () {
             }
 
             Object.keys(familyOfBoxes).forEach(function(key) {
-//      Reset numOfClicks and array, fresh start
+            //  Reset numOfClicks and array, fresh start
                 familyOfBoxes[key].numOfClicks = 0;
                 familyOfBoxes[key].array = [];
             });
@@ -131,7 +132,7 @@ var yayCorrect = function () {
             gamePlay.colorsInvolvedInPattern = [];
             gamePlay.totalDiv = 0;
 
-//      Reset numOfClicks and array, fresh start
+            //  Reset numOfClicks and array, fresh start
             let masterDiv = document.querySelector('#wrapper');
             while(masterDiv.firstChild) {
                 masterDiv.removeChild(masterDiv.firstChild);
@@ -143,7 +144,7 @@ var yayCorrect = function () {
 
 
 var checkCorrectV2 = function () {
-//      First, find out what color is presence in the current pattern
+    //  First, find out what color is presence in the current pattern
     var isItTrue = [];
     var presenceColors = gamePlay.colorsInvolvedInPattern;
     for (var i = 0; i < presenceColors.length; i++) {
@@ -166,21 +167,20 @@ var checkCorrectV2 = function () {
 }
 
 
-
-//      Generate random patterns
+//  Generate random patterns
 var GeneratePatternV2 = function (numOfColors, numOfMaxBoxes, numOfMinBoxes) {
 
-//      Allow player to press again after new pattern emerges
+        //  Allow player to press again after new pattern emerges
         document.addEventListener('keydown',press);
         document.addEventListener('keydown',checkCorrectV2)
 
-//      Since i might add more 'colors' and variations into the game, create listofFamily[] will help to easily refer to them
+    //  Since i might add more 'colors' and variations into the game, create listofFamily[] will help to easily refer to them
     var listofFamily = [];
     Object.keys(familyOfBoxes).forEach(function(key) {
         listofFamily.push(familyOfBoxes[key]);
     });
 
-//      Prevent Random numbers from creating all zero possibilites
+    //  Prevent Random numbers from creating all zero possibilites
     var sumOfRandomNumbers = 0;
     while (sumOfRandomNumbers === 0) {
         var randomNumbers = [];
@@ -193,12 +193,12 @@ var GeneratePatternV2 = function (numOfColors, numOfMaxBoxes, numOfMinBoxes) {
         }
         console.log(randomNumbers)
 
-//      Make boxes
+    //  Make boxes
     for (var i = 0; i < numOfColors; i++) {
         makeBoxes(listofFamily[i], randomNumbers[i])
     }
 
-//      Let game know which colors are involved
+    //  Let game know which colors are involved
     for (var i = 0; i < numOfColors; i++) {
         gamePlay.colorsInvolvedInPattern.push(listofFamily[i]);
     }
@@ -206,7 +206,7 @@ var GeneratePatternV2 = function (numOfColors, numOfMaxBoxes, numOfMinBoxes) {
 }
 
 
-var colorPress = function (color) {
+var checkPress = function (color) {
         color.numOfClicks++;
         if (color.numOfClicks < color.array.length) {
             changeClassBorderToFill(color);
@@ -218,32 +218,32 @@ var colorPress = function (color) {
 var press = function (e) {
     if (gamePlay.time > 0) {
 
-//      When you press 'a', this will happen..
+        //  When you press 'a', this will happen..
          if ((e.keyCode === 65) && (gamePlay.colorsInvolvedInPattern.includes(red))) {
-            colorPress(red);
+            checkPress(red);
         }
 
-//      When you press 's', this will happen..
+        //  When you press 's', this will happen..
          if ((e.keyCode === 83) && (gamePlay.colorsInvolvedInPattern.includes(yellow))) {
-            colorPress(yellow);
+            checkPress(yellow);
         }
 
-//      When you press 'd', this will happen..
+        //  When you press 'd', this will happen..
          if ((e.keyCode === 68) && (gamePlay.colorsInvolvedInPattern.includes(green))) {
-            colorPress(green);
+            checkPress(green);
         }
 
-//      When you press 'f', this will happen..
+        //  When you press 'f', this will happen..
          if ((e.keyCode === 70) && (gamePlay.colorsInvolvedInPattern.includes(blue))) {
-            colorPress(blue);
+            checkPress(blue);
         }
 
-//      When you press 'f', this will happen..
+        //  When you press 'f', this will happen..
          if ((e.keyCode === 71) && (gamePlay.colorsInvolvedInPattern.includes(maroon))) {
-            colorPress(maroon);
+            checkPress(maroon);
         }
 
-//      After time is up, players can't press anymore...
+    //  After time is up, players can't press anymore...
     } else {
         gamePlay.canPressButtonOrNot = 'no';
         }
