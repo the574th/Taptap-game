@@ -1,4 +1,4 @@
-var makeBoxes = function(color, numOfBoxes) {
+var createBoxes = function(color, numOfBoxes) {
     numOfBoxes = parseInt(numOfBoxes);
 
     // Create the extra wrong box
@@ -195,7 +195,7 @@ var GeneratePatternV2 = function (numOfColors, numOfMaxBoxes, numOfMinBoxes) {
 
 //      Make boxes
     for (var i = 0; i < numOfColors; i++) {
-        makeBoxes(listofFamily[i], randomNumbers[i])
+        createBoxes(listofFamily[i], randomNumbers[i])
     }
 
 //      Let game know which colors are involved
