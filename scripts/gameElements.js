@@ -24,14 +24,20 @@ var restartGame = function() {
     gamePlay.time = 60;
 
     var timerDiv = document.getElementById('timer')
-    timerDiv.style.fontSize = "20vh";
-    timerDiv.innerText = gamePlay.time;
+    timerDiv.style.fontSize = "20vh";  // Change the timer font size to bigger unit: 8vh > 20vh
+    timerDiv.innerText = gamePlay.time;  // Change the timer to 0
 
+    // Change the score back to zero
     var removeScore = document.querySelector('#score')
     removeScore.innerText = gamePlay.score;
 
+    // Change the level back to one
     var removeLevel = document.querySelector('#level')
     removeLevel.innerText = 'Level ' + gamePlay.level;
+
+    // Change the background back to red
+    var currentbackgroundClass = document.body.classList.value
+    document.body.classList.replace(currentbackgroundClass, 'bodyClass')
 
     setTimeout(countdown, 100)
     setTimeout(givePattern, 100)
