@@ -3,4 +3,5 @@ window.onload = function() {
     createTimer();
     countdown();
     givePattern();
+    infoTab();
 }

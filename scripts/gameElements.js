@@ -13,10 +13,6 @@ var restartGame = function() {
     }
 
     Object.keys(familyOfBoxes).forEach(function(key) {
-        // var myNode = document.querySelector(familyOfBoxes[key].containerId);
-        // while (myNode.firstChild) {
-        //     myNode.removeChild(myNode.firstChild);
-        // }
         familyOfBoxes[key].numOfClicks = 0;
         familyOfBoxes[key].array = [];
     });
@@ -36,9 +32,6 @@ var restartGame = function() {
 
     var removeLevel = document.querySelector('#level')
     removeLevel.innerText = 'Level ' + gamePlay.level;
-
-    // var backgroundColor = document.querySelector('.bodyClass');
-    // backgroundColor.classList.toggle("bodyClass","redToYellowBG")
 
     setTimeout(countdown, 100)
     setTimeout(givePattern, 100)
@@ -100,14 +93,14 @@ var countdown = function() {
         if (gamePlay.time === 0) {
             clearInterval(startCounting);
             results();
-            timerDiv.style.fontSize = "5em";
+            timerDiv.style.fontSize = "8vh";
             timerDiv.innerText = 'Time Out!'
         }
 
     }, 1000);
 }
 
-var scoreBoard = function () {
+var scoreBoard = function() {
 
     //  Create the score div in javascript
     var playerScore = document.createElement('div');
@@ -119,4 +112,14 @@ var scoreBoard = function () {
     currentLevel.innerText = 'Level '+ gamePlay.level;
     document.body.appendChild(playerScore);
     document.body.appendChild(currentLevel);
+}
+
+function infoTab() {
+
+    // Create the Information Div
+    let infoTab = document.createElement('div');
+    infoTab.setAttribute('id', 'information');
+
+    // Append Information Div
+    document.body.appendChild(infoTab)
 }

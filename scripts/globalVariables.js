@@ -59,7 +59,7 @@ var familyOfBoxes = {
 var gamePlay = {
     score: 0,
     name: null,
-    time: 60,
+    time: 5,
     level: 1,
     createNewPattern: 'yes',
     colorsInvolvedInPattern: [],
@@ -67,7 +67,7 @@ var gamePlay = {
     canPressButtonOrNot: 'yes',
 }
 
-//      variables for colors, for easier reference
+// Variables for colors, for easier reference
 var red = familyOfBoxes.red;
 var yellow = familyOfBoxes.yellow;
 var green = familyOfBoxes.green;

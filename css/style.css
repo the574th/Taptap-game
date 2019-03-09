@@ -17,12 +17,11 @@ body{
 	text-align: center;
 	display: flex;
 	height: inherit;
-	bottom: 30px;
+	bottom: 10vh;
 }
 
 #wrapper {
 	height: 100%;
-	/*background-color: blue;*/
 	display: flex;
 	justify-content: center;
 	align-self: flex-end;
@@ -158,45 +157,4 @@ body{
 	height: 75px;
 	background-color: #C38D9D;
 	border-radius: 10px;
-}
-
-#level {
-	font-family: 'VT323', monospace;
-	font-size: 2em;
-	color: #ffffff;
-	text-align: center;
-	position: absolute;
-	top: 17%;
-	left: 10.5%;
-}
-
-#timer {
-  font-size: 8em;
-  color: #ffffff;
-  font-weight: 600;
-  text-shadow: 0 6px (0,0,0,1);
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  margin: 0;
-  padding: 0;
-  font-family: 'VT323', monospace;
-  transition: .40s;
-}
-
-#score {
-	font-family: 'VT323', monospace;
-	font-size: 3em;
-	color: #ffffff;
-	text-align: center;
-	background-color: #239D9E;
-	border-radius: 10px;
-	box-shadow: 0 4px #00868F, 0 6px #60968E;
-	padding: 2px;
-	width: 100px;
-	position: absolute;
-	top: 8%;
-	left: 10%;
-	;
 }
