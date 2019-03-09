@@ -37,7 +37,7 @@
   font-weight: 600;
   text-shadow: 0 6px (0,0,0,1);
   position: absolute;
-  top: 20%;
+  top: 24%;
   left: 50%;
   transform: translate(-50%,-50%);
   margin: 0;
@@ -50,7 +50,7 @@
 
 /*			End of the Game Result			*/
 
-#result {
+/*#result {
 	font-family: 'VT323', monospace;
 	font-size: 8vh;
 	color: #ffffff;
@@ -64,11 +64,38 @@
 	box-shadow: 0 0.8vh #00868F, 0 1.4vh #60968E;
 	animation: resultFalling 1.25s cubic-bezier(0.36, 0.46, 0.27, 1.55)0s 1;
 	animation-fill-mode: forwards;
+}*/
+
+#result {
+	font-family: 'VT323', monospace;
+	font-size: 8vh;
+	color: #ffffff;
+	text-align: center;
+	background-color: #239D9E;
+	width: 60vh;
+	height: 40vh;
+	margin: 0 auto;
+	align-self: flex-end;
+	position: relative;
+	border-radius: 1.4vh;
+	box-shadow: 0 0.8vh #00868F, 0 1.4vh #60968E;
+	animation: resultFalling 1.25s cubic-bezier(0.36, 0.46, 0.27, 1.55)0s 1;
+	animation-fill-mode: forwards;
 }
 
 #resultText {
 	position: relative;
 	top: 30%;
+}
+
+#resultAbsolute {
+	position: absolute;
+	z-index: 9999;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	display: flex;
+	left: 0;
 }
 
 @keyframes resultFalling {

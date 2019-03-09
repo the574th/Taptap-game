@@ -59,7 +59,7 @@ var familyOfBoxes = {
 var gamePlay = {
     score: 0,
     name: null,
-    time: 15,
+    time: 5,
     level: 1,
     createNewPattern: 'yes',
     colorsInvolvedInPattern: [],

@@ -7,11 +7,13 @@ var restartGame = function() {
     endResultLocation.remove();
     endResult.remove();
 
+    // Remove all the child divs under #wrapper
     let masterDiv = document.querySelector('#wrapper');
     while(masterDiv.firstChild) {
         masterDiv.removeChild(masterDiv.firstChild);
     }
 
+    // For each colours, rest the num of clicks and arrays
     Object.keys(familyOfBoxes).forEach(function(key) {
         familyOfBoxes[key].numOfClicks = 0;
         familyOfBoxes[key].array = [];
@@ -23,9 +25,10 @@ var restartGame = function() {
     gamePlay.level = 1;
     gamePlay.time = 60;
 
+    // Change the timer back to 0
     var timerDiv = document.getElementById('timer')
     timerDiv.style.fontSize = "20vh";  // Change the timer font size to bigger unit: 8vh > 20vh
-    timerDiv.innerText = gamePlay.time;  // Change the timer to 0
+    timerDiv.innerText = gamePlay.time;
 
     // Change the score back to zero
     var removeScore = document.querySelector('#score')
@@ -39,6 +42,10 @@ var restartGame = function() {
     var currentbackgroundClass = document.body.classList.value
     document.body.classList.replace(currentbackgroundClass, 'bodyClass')
 
+    // Remove the result div
+    var resultAbsolute = document.querySelector('#resultAbsolute');
+    resultAbsolute.remove();
+
     setTimeout(countdown, 100)
     setTimeout(givePattern, 100)
 
@@ -49,14 +56,18 @@ var results = function () {
     var endResult = document.createElement('div');
     endResult.setAttribute('id', 'result');
 
+    var absoluteDiv = document.createElement('div');
+    absoluteDiv.setAttribute('id', 'resultAbsolute');
+
 
     var endResultText = document.createElement('div');
     endResultText.setAttribute('id', 'resultText');
     endResultText.innerText = `Try again? \n (Y)Yes (N)No`
 
 
-    var endResultLocation = document.querySelector('#endResult');
-    document.body.appendChild(endResult);
+    // var endResultLocation = document.querySelector('#bapak');
+    document.body.appendChild(absoluteDiv);
+    absoluteDiv.appendChild(endResult)
     endResult.appendChild(endResultText);
 
 
