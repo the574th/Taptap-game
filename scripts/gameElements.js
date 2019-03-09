@@ -24,7 +24,7 @@ var restartGame = function() {
     gamePlay.time = 60;
 
     var timerDiv = document.getElementById('timer')
-    timerDiv.style.fontSize = "8em";
+    timerDiv.style.fontSize = "20vh";
     timerDiv.innerText = gamePlay.time;
 
     var removeScore = document.querySelector('#score')
