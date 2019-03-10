@@ -171,9 +171,9 @@ var checkCorrectV2 = function () {
 // Generate random patterns
 var GeneratePatternV2 = function (numOfColors, numOfMaxBoxes, numOfMinBoxes) {
 
-        // Allow player to press again after new pattern emerges
-        document.addEventListener('keydown',press);
-        document.addEventListener('keydown',checkCorrectV2)
+    // Allow player to press again after new pattern emerges
+    document.addEventListener('keydown',press);
+    document.addEventListener('keydown',checkCorrectV2)
 
     // Since i might add more 'colors' and variations into the game, create listofFamily[] will help to easily refer to them
     var listofFamily = [];

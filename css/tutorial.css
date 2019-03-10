@@ -32,14 +32,33 @@
 	width: 100%;
 	text-align: center;
 	display: flex;
+	flex-direction: column;
+	left: 0;
 	/*background-color: red;*/
+}
+
+
+
+.examples {
+	width: 100%;
+	height: 70%;
+	order:1;
+}
+
+.description {
+	display: flex;
+	justify-content: center;
+	padding: 0 7vh;
+	height: 30%;
+	order: 2;
 }
 
 .instructions p {
 	min-height: 12vh;
-	width: 100%;
+	/*width: 100%;*/
 	color: white;
 	font-size: 3vh;
-	align-self: flex-end;
-	padding: 10%;
+	/*padding: 10%;*/
+	padding: 0;
+	margin: 0;
 }

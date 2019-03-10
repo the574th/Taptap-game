@@ -26,6 +26,7 @@ var tutorial = function() {
     // Create the absolute wrapper, 50% height body
     var tutorialAbsolute = document.createElement('div');
     tutorialAbsolute.classList.add('absoluteWrapper')
+
     // add style justify-content = flex-end
     tutorialAbsolute.setAttribute('style', 'justify-content: flex-end')
 
@@ -36,18 +37,27 @@ var tutorial = function() {
     // Create the 4 different container 4 instructions
     Object.keys(fourInstructions).forEach(function(key, index) {
 
-        // Create the div
+        // Create the container div per instructions
         var instructionDiv = document.createElement('div');
         instructionDiv.setAttribute('id', index);
         instructionDiv.classList.add('instructions')
         instructionDiv.setAttribute('style', 'order:'+(index+1))
 
+        // Create the example div
+        var exampleDiv = document.createElement('div');
+        exampleDiv.classList.add('examples')
+
+        // Create the description div
+        var descriptionDiv = document.createElement('div');
+        descriptionDiv.classList.add('description');
         var instructionsTag = document.createElement('p');
         instructionsTag.innerText = fourInstructions[key].instructions;
 
         // Append everything^
         tutorialContainer.appendChild(instructionDiv);
-        instructionDiv.appendChild(instructionsTag);
+        instructionDiv.appendChild(descriptionDiv);
+        instructionDiv.appendChild(exampleDiv)
+        descriptionDiv.appendChild(instructionsTag);
     })
 
 
