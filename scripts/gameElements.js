@@ -23,7 +23,7 @@ var restartGame = function() {
     gamePlay.totalDiv = 0;
     gamePlay.score = 0;
     gamePlay.level = 1;
-    gamePlay.time = 60;
+    gamePlay.time = 5;
 
     // Change the timer back to 0
     var timerDiv = document.getElementById('timer')
@@ -99,6 +99,7 @@ var createTimer = function () {
     // Creates the timer div in javascript
     var timerDiv = document.createElement('div');
     timerDiv.setAttribute('id','timer');
+    timerDiv.classList.toggle('timerSlide')
     timerDiv.innerText = gamePlay.time;
 
     // Appends the timer div into the DOM
@@ -133,7 +134,6 @@ var scoreBoard = function() {
     var playerScore = document.createElement('div');
     playerScore.setAttribute('id','score');
     playerScore.classList.toggle('scoreBoardslide');
-    // absoluteDiv.classList.add('absoluteWrapper')
     playerScore.innerText = gamePlay.score;
 
     var currentLevel = document.createElement('div')

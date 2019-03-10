@@ -45,6 +45,10 @@ var startGame = function() {
     var startMenuDiv = document.querySelector('#startMenu');
     startMenuDiv.classList.replace('ComeOut', 'GoHide');
 
+    // Make
+    var enterStart = document.querySelector('.start')
+    enterStart.classList.add('GoHide');
+
     // Start the game
     var startTheGame = function(){
         // remove the absolute wrapper for the start menu
@@ -55,7 +59,7 @@ var startGame = function() {
         createTimer();
         countdown();
         givePattern();
-        infoTab();
+        // infoTab();
         document.removeEventListener('keydown', startEnter);
     }
 
