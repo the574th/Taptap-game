@@ -57,8 +57,10 @@ var startGame = function() {
         // Bring all the game elements to start game - scoreboard, timer, countdown, pattern
         scoreBoard();
         createTimer();
-        countdown();
-        givePattern();
+        // carousel();
+        tutorial();
+        // givePattern();
+        // countdown();
         // infoTab();
         document.removeEventListener('keydown', startEnter);
     }
@@ -66,4 +68,8 @@ var startGame = function() {
     // When Start Menu Div animation GoHide finishes..
     // This is not cross compatible
     startMenuDiv.addEventListener("animationend", startTheGame)
+}
+
+window.onload = function() {
+    startMenu();
 }

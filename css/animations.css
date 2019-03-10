@@ -169,6 +169,10 @@
 	animation: slideFromTop 1.25s ease-in-out 0s 1;
 }
 
+.tutorialSlideUp {
+	animation: slideFromBottom 1.25s ease-in-out 0s 1;
+}
+
 @keyframes blink {
   0% {
     opacity: 1;
@@ -212,6 +216,15 @@
 }
   100% {
   	top: 24%;
+  }
+}
+
+@keyframes slideFromBottom {
+  0% {
+  	bottom: -100%;
+}
+  100% {
+  	bottom: -27%;
   }
 }
 

@@ -3,16 +3,25 @@ var createTimer = function () {
     // Creates the timer div in javascript
     var timerDiv = document.createElement('div');
     timerDiv.setAttribute('id','timer');
-    timerDiv.classList.toggle('timerSlide')
-    timerDiv.innerText = gamePlay.time;
 
     // Appends the timer div into the DOM
     var main = document.querySelector('#bapak');
     var first = main.children[0];
     main.insertBefore(timerDiv, first);
+
+    // Toggle Slide-in Animation when Game starts
+    timerDiv.classList.toggle('timerSlide')
+
+    // Ready Set Go
+    var array = ['Ready?', 'Set', 'Go'];
+    timerDiv.innerText = array[0];
+
 };
 
+var readySetGo = function() {
+    var array = ['Ready', 'Set', 'Go'];
 
+}
 
 var countdown = function() {
     var startCounting = setInterval(function() {

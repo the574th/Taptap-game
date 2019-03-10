@@ -1,0 +1,45 @@
+#carousel {
+	text-align: center;
+	width: 100vh;
+	height: 65vh;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	align-self: flex-end;
+	position: relative;
+	background-color: #239D9E;
+	border-radius: 1.4vh;
+	box-shadow: 0 0.8vh #00868F, 0 1.4vh #60968E;
+	bottom: -27%;
+}
+
+.imageDiv {
+	background-color: #ffffff;
+	width: 90%;
+	height: 80%;
+}
+
+.halfY-container {
+	height: 65%;
+	/*background-color: black;*/
+	display: flex;
+	flex-direction: row;
+}
+
+.instructions {
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	display: flex;
+	/*background-color: red;*/
+}
+
+.instructions p {
+	min-height: 12vh;
+	width: 100%;
+	color: white;
+	font-size: 3vh;
+	align-self: flex-end;
+	padding: 10%;
+}

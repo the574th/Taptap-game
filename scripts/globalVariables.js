@@ -56,15 +56,33 @@ var familyOfBoxes = {
     },
 };
 
+var fourInstructions = {
+    first: {
+        color: 'green',
+        instructions: 'Observe the pattern',
+    },
+    second: {
+        color: 'green',
+        instructions: 'Press the correct key',
+    },
+    third: {
+        color: 'green',
+        instructions: "Overclicking will restart the pattern",
+    },
+    fourth: {
+        color: 'green',
+        instructions: 'As you progress, the number of boxes will increase.',
+    },
+}
+
 var gamePlay = {
     score: 0,
     name: null,
-    time: 5,
+    time: 60,
     level: 1,
     createNewPattern: 'yes',
     colorsInvolvedInPattern: [],
     totalDiv: 0,
-    canPressButtonOrNot: 'yes',
 }
 
 // Variables for colors, for easier reference
