@@ -1,7 +1,8 @@
 window.onload = function() {
-    scoreBoard();
-    createTimer();
-    countdown();
-    givePattern();
-    infoTab();
+    // scoreBoard();
+    // createTimer();
+    // countdown();
+    // givePattern();
+    // infoTab();
+    startMenu();
 }

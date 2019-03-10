@@ -60,6 +60,35 @@
 
 /*		NEVER USED - 17 DECEMBER 2018		*/
 
+.ComeOut {
+	animation: dissolveOut 1.25s ease-in-out 0s 1;
+}
+
+.GoHide {
+	animation: dissolveIn 1.25s ease-in-out 0s 1!important;
+	animation-fill-mode: forwards;
+}
+
+@-moz-keyframes blinkStart {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blinkStart {
+  to {
+    visibility: hidden;
+  }
+}
+@-o-keyframes blinkStart {
+  to {
+    visibility: hidden;
+  }
+}
+@keyframes blinkStart {
+  to {
+    visibility: hidden;
+  }
+}
 
 .redBoxBorderComeOut {
 	width: 65px;

@@ -48,26 +48,38 @@
 
 
 
-/*			End of the Game Result			*/
-
-/*#result {
-	font-family: 'VT323', monospace;
-	font-size: 8vh;
+/*			Starting of the Game			*/
+#startMenu {
+	font-size: 20vh;
 	color: #ffffff;
 	text-align: center;
 	background-color: #239D9E;
-	width: 60vh;
-	height: 40vh;
-	position: absolute;
-	left: 34.5%;
+	width: 80vh;
+	height: 50vh;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	align-self: flex-end;
+	position: relative;
 	border-radius: 1.4vh;
 	box-shadow: 0 0.8vh #00868F, 0 1.4vh #60968E;
-	animation: resultFalling 1.25s cubic-bezier(0.36, 0.46, 0.27, 1.55)0s 1;
-	animation-fill-mode: forwards;
-}*/
+	bottom: -10%;
+}
 
+.start {
+	font-size: 5vh;
+	align-self: center;
+	color: white;
+	position: relative;
+  bottom: -20%;
+	animation: blinkStart 1s steps(4, start) infinite;
+}
+/*			Starting of the Game			*/
+
+/*			End of the Game Result			*/
 #result {
-	font-family: 'VT323', monospace;
+	/*font-family: 'VT323', monospace;*/
 	font-size: 8vh;
 	color: #ffffff;
 	text-align: center;
@@ -76,6 +88,7 @@
 	height: 40vh;
 	margin: 0 auto;
 	align-self: flex-end;
+	/*top: 30%;*/
 	position: relative;
 	border-radius: 1.4vh;
 	box-shadow: 0 0.8vh #00868F, 0 1.4vh #60968E;
@@ -88,13 +101,14 @@
 	top: 30%;
 }
 
-#resultAbsolute {
+.absoluteWrapper {
 	position: absolute;
 	z-index: 9999;
 	width: 100%;
 	height: 100%;
-	top: 0;
+	bottom: 0;
 	display: flex;
+	flex-direction: column;
 	left: 0;
 }
 
@@ -113,3 +127,6 @@
   }
 
 }
+
+
+/*			End of the Game Result			*/

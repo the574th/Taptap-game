@@ -40,10 +40,10 @@ var restartGame = function() {
 
     // Change the background back to red
     var currentbackgroundClass = document.body.classList.value
-    document.body.classList.replace(currentbackgroundClass, 'bodyClass')
+    document.body.classList.replace(currentbackgroundClass, 'redBg')
 
     // Remove the result div
-    var resultAbsolute = document.querySelector('#resultAbsolute');
+    var resultAbsolute = document.querySelector('.absoluteWrapper');
     resultAbsolute.remove();
 
     setTimeout(countdown, 100)
@@ -51,13 +51,19 @@ var restartGame = function() {
 
 }
 
+
+
 var results = function () {
 
     var endResult = document.createElement('div');
     endResult.setAttribute('id', 'result');
 
     var absoluteDiv = document.createElement('div');
-    absoluteDiv.setAttribute('id', 'resultAbsolute');
+    // absoluteDiv.setAttribute('id', 'resultAbsolute');
+    absoluteDiv.classList.add('absoluteWrapper')
+    // add style justify-content = flex-end
+    absoluteDiv.setAttribute('style', 'justify-content: flex-end')
+    console.log(absoluteDiv)
 
 
     var endResultText = document.createElement('div');
@@ -65,7 +71,6 @@ var results = function () {
     endResultText.innerText = `Try again? \n (Y)Yes (N)No`
 
 
-    // var endResultLocation = document.querySelector('#bapak');
     document.body.appendChild(absoluteDiv);
     absoluteDiv.appendChild(endResult)
     endResult.appendChild(endResultText);
@@ -74,6 +79,8 @@ var results = function () {
 
     document.addEventListener('keydown',yesOrNo);
 }
+
+
 
 var yesOrNo = function (e) {
      if (e.keyCode === 89) {
@@ -89,16 +96,17 @@ var yesOrNo = function (e) {
 
 var createTimer = function () {
 
-//      Creates the timer div in javascript
+    // Creates the timer div in javascript
     var timerDiv = document.createElement('div');
     timerDiv.setAttribute('id','timer');
     timerDiv.innerText = gamePlay.time;
 
-//      Appends the timer div into the DOM
+    // Appends the timer div into the DOM
     var main = document.querySelector('#bapak');
     var first = main.children[0];
     main.insertBefore(timerDiv, first);
 };
+
 
 
 var countdown = function() {
@@ -117,6 +125,8 @@ var countdown = function() {
     }, 1000);
 }
 
+
+
 var scoreBoard = function() {
 
     //  Create the score div in javascript
@@ -130,6 +140,8 @@ var scoreBoard = function() {
     document.body.appendChild(playerScore);
     document.body.appendChild(currentLevel);
 }
+
+
 
 function infoTab() {
 
