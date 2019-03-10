@@ -132,10 +132,13 @@ var scoreBoard = function() {
     //  Create the score div in javascript
     var playerScore = document.createElement('div');
     playerScore.setAttribute('id','score');
+    playerScore.classList.toggle('scoreBoardslide');
+    // absoluteDiv.classList.add('absoluteWrapper')
     playerScore.innerText = gamePlay.score;
 
     var currentLevel = document.createElement('div')
     currentLevel.setAttribute('id','level');
+    currentLevel.classList.toggle('scoreSlide');
     currentLevel.innerText = 'Level '+ gamePlay.level;
     document.body.appendChild(playerScore);
     document.body.appendChild(currentLevel);

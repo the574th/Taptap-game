@@ -45,19 +45,21 @@ var startGame = function() {
     var startMenuDiv = document.querySelector('#startMenu');
     startMenuDiv.classList.replace('ComeOut', 'GoHide');
 
-    // Remove startMenuAbsoluteDIv function
-    var removeAbsoluteWrapper = function(){
-            var startMenuAbsoluteDiv = document.querySelector('.absoluteWrapper');
-            startMenuAbsoluteDiv.remove();
-            scoreBoard();
-            createTimer();
-            countdown();
-            givePattern();
-            infoTab();
-            document.removeEventListener('keydown', startEnter);
+    // Start the game
+    var startTheGame = function(){
+        // remove the absolute wrapper for the start menu
+        document.querySelector('.absoluteWrapper').remove();
+
+        // Bring all the game elements to start game - scoreboard, timer, countdown, pattern
+        scoreBoard();
+        createTimer();
+        countdown();
+        givePattern();
+        infoTab();
+        document.removeEventListener('keydown', startEnter);
     }
 
     // When Start Menu Div animation GoHide finishes..
     // This is not cross compatible
-    startMenuDiv.addEventListener("animationend", removeAbsoluteWrapper)
+    startMenuDiv.addEventListener("animationend", startTheGame)
 }

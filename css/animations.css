@@ -1,8 +1,3 @@
-/*							This CSS file consists:							*/
-/*							BoxHide, WrongBoxBlink2							*/
-
-
-
 .redBoxHide {
 	width: 75px;
 	height: 75px;
@@ -54,40 +49,6 @@
     opacity: 0;
   }
 
-}
-
-
-
-/*		NEVER USED - 17 DECEMBER 2018		*/
-
-.ComeOut {
-	animation: dissolveOut 1.25s ease-in-out 0s 1;
-}
-
-.GoHide {
-	animation: dissolveIn 1.25s ease-in-out 0s 1!important;
-	animation-fill-mode: forwards;
-}
-
-@-moz-keyframes blinkStart {
-  to {
-    visibility: hidden;
-  }
-}
-@-webkit-keyframes blinkStart {
-  to {
-    visibility: hidden;
-  }
-}
-@-o-keyframes blinkStart {
-  to {
-    visibility: hidden;
-  }
-}
-@keyframes blinkStart {
-  to {
-    visibility: hidden;
-  }
 }
 
 .redBoxBorderComeOut {
@@ -187,6 +148,23 @@
   animation: blink 1s cubic-bezier(1,0,0,1)  1;
 }
 
+.ComeOut {
+	animation: dissolveOut 1.25s ease-in-out 0s 1;
+}
+
+.GoHide {
+	animation: dissolveIn 1.25s ease-in-out 0s 1!important;
+	animation-fill-mode: forwards;
+}
+
+.scoreBoardslide {
+	animation: slideFromLeft 1.25s ease-in-out 0s 1;
+}
+
+.scoreSlide {
+	animation: slideFromLeftText 1.25s ease-in-out 0s 1;
+}
+
 @keyframes blink {
   0% {
     opacity: 1;
@@ -204,4 +182,53 @@
     opacity: 1;
   }
 
+}
+
+@keyframes slideFromLeft {
+  0% {
+  	left: -20%;
+}
+  100% {
+  	left: 10%;
+  }
+}
+
+@keyframes slideFromLeftText {
+  0% {
+  	left: -20%;
+}
+  100% {
+  	left: 10.5%;
+  }
+}
+
+
+@keyframes slideFromTop {
+  0% {
+  	left: -20%;
+}
+  100% {
+  	left: 10%;
+  }
+}
+
+@-moz-keyframes blinkStart {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blinkStart {
+  to {
+    visibility: hidden;
+  }
+}
+@-o-keyframes blinkStart {
+  to {
+    visibility: hidden;
+  }
+}
+@keyframes blinkStart {
+  to {
+    visibility: hidden;
+  }
 }
