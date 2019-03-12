@@ -210,6 +210,7 @@
 
 .ani-BounceUpDown {
 	animation: bounce 1.25s ease-in-out 0s 1;
+	animation-iteration-count: 3;
 	/*animation-fill-mode: forwards;*/
 }
 
@@ -273,7 +274,7 @@
   	top: -40%;
 }
   100% {
-  	top: 0;
+  	top: 4%;
   }
 }
 

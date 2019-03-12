@@ -23,11 +23,12 @@ var restartGame = function() {
     gamePlay.totalDiv = 0;
     gamePlay.score = 0;
     gamePlay.level = 1;
-    gamePlay.time = 5;
+    gamePlay.time = 60;
 
     // Change the timer back to 0
     var timerDiv = document.getElementById('timer')
-    timerDiv.style.fontSize = "20vh";  // Change the timer font size to bigger unit: 8vh > 20vh
+    timerDiv.removeAttribute('style');
+    // timerDiv.style.fontSize = "20vh";  // Change the timer font size to bigger unit: 8vh > 20vh
     timerDiv.innerText = gamePlay.time;
 
     // Change the score back to zero
@@ -43,7 +44,9 @@ var restartGame = function() {
     document.body.classList.replace(currentbackgroundClass, 'redBg')
 
     // Remove the result div
-    var resultAbsolute = document.querySelector('.absoluteWrapper');
+    var resultAbsolute = document.querySelector('#resultAbsolute');
+    console.log(resultAbsolute)
+    console.log('hello from restartGame')
     resultAbsolute.remove();
 
     setTimeout(countdown, 100)
@@ -59,12 +62,10 @@ var results = function () {
     endResult.setAttribute('id', 'result');
 
     var absoluteDiv = document.createElement('div');
-    // absoluteDiv.setAttribute('id', 'resultAbsolute');
+    absoluteDiv.setAttribute('id', 'resultAbsolute');
     absoluteDiv.classList.add('absoluteWrapper')
     // add style justify-content = flex-end
     absoluteDiv.setAttribute('style', 'justify-content: flex-end')
-    console.log(absoluteDiv)
-
 
     var endResultText = document.createElement('div');
     endResultText.setAttribute('id', 'resultText');

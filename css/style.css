@@ -23,13 +23,15 @@ body{
 }
 
 #wrapper {
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-self: flex-end;
-	margin: 0 auto;
-	text-align: center;
-	left: 65px;
+  /*background-color: green;*/
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 10vh;
+  flex-direction: inherit;
 }
 
 /* https://www.kirupa.com/html5/make_body_take_up_full_browser_height.htm */

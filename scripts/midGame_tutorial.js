@@ -69,19 +69,40 @@ var launchGame = function() {
         instructionDiv[key].classList.replace('instructionSlide', 'instructionDisappear')
     })
 
+    var myRepeatFunction = function() {
+    console.log('urm hello?')
+    this.innerText = array[1];
+}
+
     // When instruction div ^ has disappear...launchGame()
     instructionDiv[0].addEventListener("animationend", function handler(e) {
         instructionDiv[0].removeEventListener(e.type, handler)
+
         // launchGame();
         console.log('okay animation done')
         var absoluteWrapper = document.querySelector('.absoluteWrapper');
         absoluteWrapper.remove();
         console.log('wrapper removed')
 
+        // crerate wrapper for boxes
+        let wrapperDiv = document.createElement('div');
+        wrapperDiv.setAttribute('id', 'wrapper');
+        wrapperDiv.classList.add('absoluteWrapper')
+        document.body.appendChild(wrapperDiv)
+
         // Ready! Set! Go!
         var array = ['Ready!', 'Set!', 'Go!'];
         var timer = document.querySelector('#timer');
-        toggleAnimation(timer, 'ani-BounceUpDown', 'no');
-        // timer.classList.replace('timerSlide', 'ani-BounceUpDown');
+        timer.innerText = array[0];
+        timer.classList.toggle('ani-BounceUpDown')
+        timer.addEventListener("animationiteration", () => {
+            timer.innerText = array[1];
+        });
+        timer.addEventListener("animationend", function handler(e) {
+            timer.removeEventListener(e.type, handler);
+            timer.innerText = 60;
+            countdown();
+            givePattern();
+        })
     })
 }

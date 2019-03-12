@@ -27,13 +27,13 @@ var countdown = function() {
         if (gamePlay.time === 0) {
             clearInterval(startCounting);
             results();
-            timerDiv.style.fontSize = "8vh";
+            // timerDiv.style.fontSize = "10vh";
+            timerDiv.setAttribute('style','font-size: 10vh; top: 9%')
             timerDiv.innerText = 'Time Out!'
         }
 
     }, 1000);
 }
-
 
 
 var scoreBoard = function() {
