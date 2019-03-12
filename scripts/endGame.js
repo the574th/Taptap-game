@@ -54,8 +54,6 @@ var restartGame = function() {
 
 }
 
-
-
 var results = function () {
 
     var endResult = document.createElement('div');

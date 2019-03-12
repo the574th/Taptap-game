@@ -12,18 +12,7 @@ body{
 	height: 100%;
 }
 
-#bapak {
-	/*background-color: green;*/
-	position: relative;
-	margin: 0 auto;
-	text-align: center;
-	display: flex;
-	height: inherit;
-	bottom: 10vh;
-}
-
 #wrapper {
-  /*background-color: green;*/
   height: 100%;
   display: flex;
   justify-content: center;
@@ -39,12 +28,17 @@ body{
 
 /*		Main Div for Each Color		*/
 
-#redBoxesMatters {
+.keyLetterInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4vh;
+}
 
+#redBoxesMatters {
 	display: flex;
 	flex-direction: column;
 	align-self: flex-end;
-	/*position: absolute;*/
 	bottom:0 ;
 	left: 0;
 }
@@ -53,7 +47,6 @@ body{
 	display: flex;
 	flex-direction: column;
 	align-self: flex-end;
-	/*position: absolute;*/
 	bottom:0 ;
 	left:75px;
 }
@@ -62,7 +55,6 @@ body{
 	display: flex;
 	flex-direction: column;
 	align-self: flex-end;
-	/*position: absolute;*/
 	bottom:0 ;
 	left:150px;
 }
@@ -71,7 +63,6 @@ body{
 	display: flex;
 	flex-direction: column;
 	align-self: flex-end;
-	/*position: absolute;*/
 	bottom:0 ;
 	left:225px;
 }
@@ -80,7 +71,6 @@ body{
 	display: flex;
 	flex-direction: column;
 	align-self: flex-end;
-	/*position: absolute;*/
 	bottom:0 ;
 	left:300px;
 }

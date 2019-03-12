@@ -8,7 +8,8 @@ var familyOfBoxes = {
         boxid: 'r',
         containerId: 'redBoxesMatters',
         numOfClicks: 0,
-        keycode: 65
+        keycode: 65,
+        letter: 'A'
     },
     yellow: {
         array: [],
@@ -19,7 +20,8 @@ var familyOfBoxes = {
         boxid: 'y',
         containerId: 'yellowBoxesMatters',
         numOfClicks: 0,
-        keycode: 83
+        keycode: 83,
+        letter: 'S'
     },
     green: {
         array: [],
@@ -30,7 +32,8 @@ var familyOfBoxes = {
         boxid: 'g',
         containerId: 'greenBoxesMatters',
         numOfClicks: 0,
-        keycode: 68
+        keycode: 68,
+        letter: 'D'
     },
     blue: {
         array: [],
@@ -41,7 +44,8 @@ var familyOfBoxes = {
         boxid: 'b',
         containerId: 'blueBoxesMatters',
         numOfClicks: 0,
-        keycode: 70
+        keycode: 70,
+        letter: 'F'
     },
     maroon: {
         array: [],
@@ -52,7 +56,8 @@ var familyOfBoxes = {
         boxid: 'm',
         containerId: 'maroonBoxesMatters',
         numOfClicks: 0,
-        keycode: 71
+        keycode: 71,
+        letter: 'G'
     },
 };
 

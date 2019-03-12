@@ -44,14 +44,47 @@ var scoreBoard = function() {
     document.body.appendChild(currentLevel);
 }
 
+var levelUpAnimation = function() {
+    // Create the div for the sliding level up
+    var absoluteDiv = document.createElement('div');
+    absoluteDiv.setAttribute('id', 'levelUp');
+    absoluteDiv.classList.add('absoluteWrapper')
 
+    var div = document.createElement('div');
+    div.classList.add('ani-levelUp')
+    div.innerText = 'Level Up!'
 
-function infoTab() {
+    document.body.appendChild(absoluteDiv);
+    absoluteDiv.appendChild(div)
 
-    // Create the Information Div
-    let infoTab = document.createElement('div');
-    infoTab.setAttribute('id', 'information');
+    absoluteDiv.addEventListener('animationend', function handler(e) {
+        absoluteDiv.removeEventListener(e.type, handler);
+        absoluteDiv.remove()
+    })
+}
 
-    // Append Information Div
-    document.body.appendChild(infoTab)
+var plusScoreAnimation = function() {
+    var div = document.createElement('div');
+    div.classList.add('ani-plusScore');
+    div.classList.add('plusScore');
+    div.innerText = '+5'
+
+    // append Div
+    var absoluteDiv = document.createElement('div');
+    absoluteDiv.classList.add('absoluteWrapper');
+    document.body.appendChild(absoluteDiv)
+
+    var parentDiv = document.createElement('div');
+    parentDiv.classList.add('relativeWrapper');
+    absoluteDiv.appendChild(parentDiv);
+    parentDiv.appendChild(div);
+
+    // document.body.appendChild(div)
+    // var parentDiv = document.querySelector('#score');
+    // parentDiv.appendChild(div);
+
+    document.body.addEventListener('animationend', function handler(e) {
+        document.body.removeEventListener(e.type, handler);
+        absoluteDiv.remove()
+    })
 }

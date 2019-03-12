@@ -10,8 +10,10 @@ var createBoxes = function(color, numOfBoxes) {
     // Create the number of boxes
     for (var i=0; i<numOfBoxes; i++) {
         color.array.push( document.createElement("div") );
+        color.array[i+1].innerText = color.letter;
         color.array[i+1].id = color.boxid+i; // add id |  i+1 is there to prevent changing of the extra wrong box
         color.array[i+1].classList.add(color.classBorder); // add class
+        color.array[i+1].classList.add('keyLetterInfo'); // add class
     };
 
     // Create Parent div to contain the color boxes
@@ -82,6 +84,7 @@ var yayCorrect = function () {
     gamePlay.score +=5;
     var playerScore = document.querySelector('#score');
     playerScore.innerText = gamePlay.score;
+    plusScoreAnimation();
 
     // Update level
     levelUp();
@@ -256,6 +259,7 @@ var levelUp = function () {
     if (gamePlay.score % 30 === 0) {
         gamePlay.level++;
         gamePlay.time += 5;
+        levelUpAnimation()
         if (gamePlay.level === 2) {
             backgroundColor.classList.replace("redBg","redToYellowBG");
         }

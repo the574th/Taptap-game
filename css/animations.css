@@ -175,8 +175,6 @@
 	animation: slideFromBottom 1.25s ease-in-out 0s 1;
 }
 
-
-
 .instructionSlide {
 	animation: instructionSlide 1.25s ease-in-out 0s 1;
 }
@@ -190,8 +188,6 @@
     opacity: 1;
   }
 }
-
-
 
 .instructionDisappear {
 	animation: instructionDisappear 1.25s ease-in-out 0s 1;
@@ -211,7 +207,6 @@
 .ani-BounceUpDown {
 	animation: bounce 1.25s ease-in-out 0s 1;
 	animation-iteration-count: 3;
-	/*animation-fill-mode: forwards;*/
 }
 
 @keyframes bounce {
@@ -223,6 +218,54 @@
 	}
 	100% {
 		transform: scale(1);
+	}
+}
+
+#levelUp {
+	justify-content: center;
+}
+
+#levelUp div{
+	font-size: 20vh;
+	font-weight: 600;
+	position: relative;
+}
+
+.ani-levelUp {
+	animation: levelUp 2s ease-in-out 0s 1;
+}
+
+@keyframes levelUp {
+  0% {
+  	left: -40%;
+}
+  100% {
+  	left: 100%;
+  }
+}
+
+.plusScore {
+    font-size: 5vh;
+    position: absolute;
+    left: 20%;
+    top: 9%;
+}
+
+.ani-plusScore {
+	animation: plusScore 1.25s ease-in-out;
+}
+
+@keyframes plusScore {
+	0% {
+		opacity: 0;
+		top: 11%;
+	}
+	75%{
+		opacity: 1;
+	}
+	100%{
+		opacity: 1;
+		top: 7%;
 	}
 }
 

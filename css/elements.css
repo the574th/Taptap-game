@@ -33,16 +33,10 @@
 #timer {
   font-size: 20vh;
   font-weight: 600;
-  /*text-shadow: 0 6px (0,0,0,1);*/
   position: relative;
   transition: .40s;
   text-align: center;
   top: 4%;
-  /*left: 50%;*/
-  /*transform: translate(-50%,-50%);*/
-  /*margin: 0;*/
-  /*padding: 0;*/
-  /*font-family: 'VT323', monospace;*/
 }
 
 #timer h3 {

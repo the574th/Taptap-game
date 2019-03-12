@@ -126,6 +126,5 @@ var readySetGo = function() {
         if (i === 2) {
             clearInterval(startChanging);
         }
-
     }, 1250);
 }
