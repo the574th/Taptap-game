@@ -23,7 +23,7 @@ var restartGame = function() {
     gamePlay.totalDiv = 0;
     gamePlay.score = 0;
     gamePlay.level = 1;
-    gamePlay.time = 60;
+    gamePlay.time = 45;
 
     // Change the timer back to 0
     var timerDiv = document.getElementById('timer')

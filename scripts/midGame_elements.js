@@ -5,17 +5,10 @@ var createTimer = function () {
     timerDiv.setAttribute('id','timer');
 
     // Appends the timer div into the DOM
-    // var main = document.querySelector('#bapak');
-    // var first = main.children[0];
-    // main.insertBefore(timerDiv, first);
     document.body.appendChild(timerDiv)
 
     // Toggle Slide-in Animation when Game starts
-    // timerDiv.classList.toggle('timerSlide');
     toggleAnimation(timerDiv, 'timerSlide', 'no');
-
-    timerDiv.innerText = 'Ready?';
-
 };
 
 var countdown = function() {
@@ -27,7 +20,6 @@ var countdown = function() {
         if (gamePlay.time === 0) {
             clearInterval(startCounting);
             results();
-            // timerDiv.style.fontSize = "10vh";
             timerDiv.setAttribute('style','font-size: 10vh; top: 9%')
             timerDiv.innerText = 'Time Out!'
         }

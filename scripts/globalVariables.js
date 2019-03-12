@@ -78,7 +78,7 @@ var fourInstructions = {
 var gamePlay = {
     score: 0,
     name: null,
-    time: 60,
+    time: 45,
     level: 1,
     createNewPattern: 'yes',
     colorsInvolvedInPattern: [],

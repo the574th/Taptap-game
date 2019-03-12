@@ -40,11 +40,6 @@ var startingPage = function() {
     startingPageContainer.appendChild(enterStart)
     box.appendChild(span)
 
-    // // When 'ComeOut' animation on line 166 has ended...
-    // box.addEventListener("animationend", () => {
-    //     document.addEventListener('keydown', keydownEnter)  // add the event listener for enter
-    // });
-
     // When 'ComeOut' animation on line 166 has ended...
     box.addEventListener("animationend", function handler(e) {
         box.removeEventListener(e.type, handler);
@@ -86,17 +81,4 @@ var showHowToPlay = function() {
         tutorial();
         })
 
-    // // When Start Menu Div animation GoHide finishes..
-    // // This is not cross compatible
-    // startMenuBox.addEventListener("animationend", function handler(e) {
-    //     startMenuBox.removeEventListener(e.type, handler);
-
-    //     // remove the absolute wrapper for the start menu
-    //     document.querySelector('.absoluteWrapper').remove();
-
-    //     // Bring all the UI elements to show How to play
-    //     scoreBoard();
-    //     createTimer();
-    //     tutorial();
-    // })
 }

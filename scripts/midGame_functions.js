@@ -14,11 +14,6 @@ var createBoxes = function(color, numOfBoxes) {
         color.array[i+1].classList.add(color.classBorder); // add class
     };
 
-// wrapperDiv = document.createElement('div');
-//     wrapperDiv.setAttribute('id', 'wrapper');
-//         // Create Wrapper Div and append
-//     let
-
     // Create Parent div to contain the color boxes
     let parentDiv = document.createElement("div");
     parentDiv.id = color.containerId;

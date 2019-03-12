@@ -47,6 +47,16 @@ var tutorial = function() {
         instructionDiv.removeEventListener(e.type, handler)
         document.addEventListener('keydown', startGame)  // add the eventlistener for enter
     });
+
+    //
+    var timerDiv = document.querySelector('#timer');
+    timerDiv.innerText = 'Ready?';
+
+    var description = document.createElement('h3');
+    description.innerText = 'Press Enter to Start'
+    timerDiv.appendChild(description);
+
+
 }
 
 
@@ -69,10 +79,8 @@ var launchGame = function() {
         instructionDiv[key].classList.replace('instructionSlide', 'instructionDisappear')
     })
 
-    var myRepeatFunction = function() {
-    console.log('urm hello?')
-    this.innerText = array[1];
-}
+    var hthreeDiv = document.querySelector('h3');
+    hthreeDiv.classList.toggle('instructionDisappear')
 
     // When instruction div ^ has disappear...launchGame()
     instructionDiv[0].addEventListener("animationend", function handler(e) {
@@ -95,14 +103,29 @@ var launchGame = function() {
         var timer = document.querySelector('#timer');
         timer.innerText = array[0];
         timer.classList.toggle('ani-BounceUpDown')
-        timer.addEventListener("animationiteration", () => {
-            timer.innerText = array[1];
-        });
+        readySetGo();
+
         timer.addEventListener("animationend", function handler(e) {
             timer.removeEventListener(e.type, handler);
-            timer.innerText = 60;
+            timer.innerText = gamePlay.time;
             countdown();
             givePattern();
         })
     })
+}
+
+var readySetGo = function() {
+    var array = ['Ready!', 'Set!', 'Go!'];
+    var i = 0;
+    var timer = document.querySelector('#timer');
+
+    var startChanging = setInterval(function() {
+            i++
+            timer.innerText = array[i]
+
+        if (i === 2) {
+            clearInterval(startChanging);
+        }
+
+    }, 1250);
 }

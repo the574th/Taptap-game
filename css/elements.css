@@ -45,6 +45,11 @@
   /*font-family: 'VT323', monospace;*/
 }
 
+#timer h3 {
+	font-size: 7vh;
+	margin: 0;
+}
+
 
 
 /*			Starting of the Game			*/
