@@ -1,26 +1,3 @@
-var carousel = function() {
-
-    // Create the absolute wrapper for the carousel
-    var carouselAbsolute = document.createElement('div');
-    carouselAbsolute.classList.add('absoluteWrapper')
-
-    // Create Parent Div to contain carousel
-    var carouselParent = document.createElement('div');
-    carouselParent.setAttribute('id', 'carousel')
-
-    // Create Image div
-    var imageDiv = document.createElement('div');
-    imageDiv.classList.add('imageDiv')
-
-    // Append everything^ into document
-    document.body.appendChild(carouselAbsolute);
-    carouselAbsolute.appendChild(carouselParent);
-    carouselParent.appendChild(imageDiv)
-
-    // Toggle Slide animation for carousel div
-    carouselParent.classList.toggle('carouselSlideUp')
-}
-
 var tutorial = function() {
 
     // Create the absolute wrapper, 50% height body
@@ -40,7 +17,7 @@ var tutorial = function() {
         // Create the container div per instructions
         var instructionDiv = document.createElement('div');
         instructionDiv.setAttribute('id', index);
-        instructionDiv.classList.add('instructions')
+        instructionDiv.classList.add('instructions', 'instructionSlide')
         instructionDiv.setAttribute('style', 'order:'+(index+1))
 
         // Create the example div
@@ -53,19 +30,58 @@ var tutorial = function() {
         var instructionsTag = document.createElement('p');
         instructionsTag.innerText = fourInstructions[key].instructions;
 
-        // Append everything^
+        // Append everything ^
         tutorialContainer.appendChild(instructionDiv);
         instructionDiv.appendChild(descriptionDiv);
-        instructionDiv.appendChild(exampleDiv)
+        instructionDiv.appendChild(exampleDiv);
         descriptionDiv.appendChild(instructionsTag);
     })
-
 
     // Append everything^ into document
     document.body.appendChild(tutorialAbsolute);
     tutorialAbsolute.appendChild(tutorialContainer)
+
+    // When 'instructionSlide' animation on line 21 has ended...
+    var instructionDiv = document.querySelector('.instructions');
+    instructionDiv.addEventListener("animationend", function handler(e) {
+        instructionDiv.removeEventListener(e.type, handler)
+        document.addEventListener('keydown', startGame)  // add the eventlistener for enter
+    });
 }
 
-function instructionOne() {
 
+// Make program listen for keydown - press enter to start
+var startGame = function(e) {
+    if (e.keyCode == 13) {
+        console.log('Starting Game')
+        launchGame();
+    }
+}
+
+
+var launchGame = function() {
+    // Remove eventListener
+    document.removeEventListener('keydown', startGame);
+
+    // Replace animation for instructions div to disappear
+    var instructionDiv = document.querySelectorAll('.instructions');
+    Object.keys(instructionDiv).forEach(function(key) {
+        instructionDiv[key].classList.replace('instructionSlide', 'instructionDisappear')
+    })
+
+    // When instruction div ^ has disappear...launchGame()
+    instructionDiv[0].addEventListener("animationend", function handler(e) {
+        instructionDiv[0].removeEventListener(e.type, handler)
+        // launchGame();
+        console.log('okay animation done')
+        var absoluteWrapper = document.querySelector('.absoluteWrapper');
+        absoluteWrapper.remove();
+        console.log('wrapper removed')
+
+        // Ready! Set! Go!
+        var array = ['Ready!', 'Set!', 'Go!'];
+        var timer = document.querySelector('#timer');
+        toggleAnimation(timer, 'ani-BounceUpDown', 'no');
+        // timer.classList.replace('timerSlide', 'ani-BounceUpDown');
+    })
 }

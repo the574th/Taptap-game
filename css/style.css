@@ -6,10 +6,10 @@ html {
 }
 
 body{
-	background-color: #E8977F;
-	font-family: 'VT323', monospace;
+ 	font-family: 'VT323', monospace;
+	color: white;
+	margin: 0;
 	height: 100%;
-	margin: 0px;
 }
 
 #bapak {

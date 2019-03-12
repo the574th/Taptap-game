@@ -48,7 +48,6 @@
     transform: scale(0);
     opacity: 0;
   }
-
 }
 
 .redBoxBorderComeOut {
@@ -148,13 +147,16 @@
   animation: blink 1s cubic-bezier(1,0,0,1)  1;
 }
 
+
+
+
+
 .ComeOut {
 	animation: dissolveOut 1.25s ease-in-out 0s 1;
 }
 
 .GoHide {
 	animation: dissolveIn 1.25s ease-in-out 0s 1!important;
-	animation-fill-mode: forwards;
 }
 
 .scoreBoardslide {
@@ -173,14 +175,61 @@
 	animation: slideFromBottom 1.25s ease-in-out 0s 1;
 }
 
-.slideIn {
-	animation: slideFromLeft 1.25s ease-in-out 0s 1;
+
+
+.instructionSlide {
+	animation: instructionSlide 1.25s ease-in-out 0s 1;
 }
+@keyframes instructionSlide {
+  0% {
+    left: -100%;
+    opacity: 0;;
+}
+  100% {
+  	left: 0;
+    opacity: 1;
+  }
+}
+
+
+
+.instructionDisappear {
+	animation: instructionDisappear 1.25s ease-in-out 0s 1;
+	animation-fill-mode: forwards;
+}
+@keyframes instructionDisappear {
+  0% {
+    left: -100%;
+    opacity: 1;
+}
+  100% {
+  	left: 0;
+    opacity: 0;
+  }
+}
+
+.ani-BounceUpDown {
+	animation: bounce 1.25s ease-in-out 0s 1;
+	/*animation-fill-mode: forwards;*/
+}
+
+@keyframes bounce {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.2);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
 
 @keyframes blink {
   0% {
     opacity: 1;
-}
+  }
   25% {
     opacity: 0;
   }
@@ -195,6 +244,8 @@
   }
 }
 
+
+
 @keyframes slideFromLeft {
   0% {
   	left: -20%;
@@ -203,6 +254,8 @@
   	left: 10%;
   }
 }
+
+
 
 @keyframes slideFromLeftText {
   0% {
@@ -214,14 +267,17 @@
 }
 
 
+
 @keyframes slideFromTop {
   0% {
-  	top: -20%;
+  	top: -40%;
 }
   100% {
-  	top: 24%;
+  	top: 0;
   }
 }
+
+
 
 @keyframes slideFromBottom {
   0% {
@@ -231,6 +287,8 @@
   	bottom: -27%;
   }
 }
+
+
 
 @-moz-keyframes blinkStart {
   to {

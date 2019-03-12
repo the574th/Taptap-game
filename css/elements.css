@@ -32,25 +32,24 @@
 
 #timer {
   font-size: 20vh;
-  color: #ffffff;
   font-weight: 600;
-  text-shadow: 0 6px (0,0,0,1);
-  position: absolute;
-  top: 24%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  margin: 0;
-  padding: 0;
-  font-family: 'VT323', monospace;
+  /*text-shadow: 0 6px (0,0,0,1);*/
+  position: relative;
   transition: .40s;
+  text-align: center;
+  /*top: 24%;*/
+  /*left: 50%;*/
+  /*transform: translate(-50%,-50%);*/
+  /*margin: 0;*/
+  /*padding: 0;*/
+  /*font-family: 'VT323', monospace;*/
 }
 
 
 
 /*			Starting of the Game			*/
-#startMenu {
+#startingPage .box {
 	font-size: 20vh;
-	color: #ffffff;
 	text-align: center;
 	background-color: #239D9E;
 	width: 80vh;
@@ -59,17 +58,15 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	align-self: flex-end;
 	position: relative;
 	border-radius: 1.4vh;
 	box-shadow: 0 0.8vh #00868F, 0 1.4vh #60968E;
 	bottom: -10%;
 }
 
-.start {
+#startingPage h3 {
 	font-size: 5vh;
 	align-self: center;
-	color: white;
 	position: relative;
   bottom: -20%;
 	animation: blinkStart 1s steps(4, start) infinite;
